@@ -47,70 +47,79 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="fullname" class="control-label mb-1">Full Name:</label>
-                                                        <input id="fullname" name="fullname" type="text" class="form-control">                                                         
+                                                        <input id="fullname" name="fullname" type="text" class="form-control">  
+                                                        <span id="fullnameError"></span>                                                         
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="firmname" class="control-label mb-1">Firm Name:</label>
-                                                        <input id="firmname" name="firmname" type="text" class="form-control">                                                         
+                                                        <input id="firmname" name="firmname" type="text" class="form-control">  
+                                                        <span id="firmnameError"></span>                                                         
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="contact" class="control-label mb-1">Mobile No.:</label>
-                                                        <input id="contact" name="contact" type="text" class="form-control">                                                        
+                                                        <input id="contact" name="contact" type="text" class="form-control">
+                                                        <span id="contactError"></span>                                                          
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="email" class="control-label mb-1">Email ID:</label>
-                                                        <input id="email" name="email" type="text" class="form-control">                                                        
+                                                        <input id="email" name="email" type="text" class="form-control">   
+                                                        <span id="emailError"></span>                                                       
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="address" class="control-label mb-1">Address:</label>
-                                                        <textarea id="address" name="address" class="form-control"></textarea>                                                     
+                                                        <textarea id="address" name="address" class="form-control"></textarea>  
+                                                        <span id="addressError"></span>                                                     
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="taskdesc" class="control-label mb-1">Task Description / Remarks:</label>
-                                                        <textarea id="taskdesc" name="taskdesc"  class="form-control"></textarea>                                                      
+                                                        <textarea id="taskdesc" name="taskdesc"  class="form-control"></textarea> 
+                                                        <span id="remarksError"></span>                                                       
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="assigned_user" class="control-label mb-1">Assign User:</label>
-                                                        <select name="assigned_user" id="assigned_user" class='form-control'>
-
-                                                        </select>
+                                                        <select name="assigned_user" id="assigned_user" class='form-control'></select>
+                                                        <span id="assignedError"></span> 
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="totamount" class="control-label mb-1">Total Amount:</label>
-                                                        <input id="totamount" name="totamount" type="text" class="form-control">                                                   
+                                                        <input id="totamount" name="totamount" type="text" class="form-control">  
+                                                        <span id="totalError"></span>                                                   
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="depamount" class="control-label mb-1">Deposited Amount:</label>
-                                                        <input id="depamount" name="depamount" type="text" class="form-control" readonly>                                                    
+                                                        <input id="depamount" name="depamount" type="text" class="form-control" readonly>
+                                                        <span id="depositedError"></span>                                                      
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="remamount" class="control-label mb-1">Remaining Amount:</label>
-                                                        <input id="remamount" name="remamount" type="text" class="form-control" readonly>                                                      
+                                                        <input id="remamount" name="remamount" type="text" class="form-control" readonly>
+                                                        <span id="remainingError"></span>                                                        
                                                     </div>
                                                 </div>
 
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="subdate" class="control-label mb-1">Last date to submit :</label>
-                                                        <input id="subdate" name="subdate" type="text" class="form-control datepicker">                                                      
+                                                        <input id="subdate" name="subdate" type="text" class="form-control datepicker">
+                                                        <span id="lastdateError"></span>                                                        
                                                     </div>
                                                 </div>
                                               

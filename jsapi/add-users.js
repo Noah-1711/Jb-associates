@@ -2,55 +2,55 @@ $(document).ready(function() {
     getUsers()
     $(".submitBtn").click(function() {
 
-            //alert('hello')
+        //alert('hello')
 
-            var fullname = $("#fullname").val();
-            var contact = $("#contact").val();
-            var email = $("#email").val();
-            var address = $("#address").val();
-            var password = $("#password").val()
+        var fullname = $("#fullname").val();
+        var contact = $("#contact").val();
+        var email = $("#email").val();
+        var address = $("#address").val();
+        var password = $("#password").val();
+        var flag = false;
 
-
-            if (fullname == "") {
-                flag = false;
-                $('#fullname').html('please enter fullname');
-            }
-            if (contact == "") {
-                flag = false;
-                $('#contact').html('please enter contact number');
-            }
-
-
-            if (email == "") {
-                flag = false;
-                $('#email').html('please enter email');
-            }
+        if (!fullname) {
+            flag = false;
+            $('#fullnameError').html('please enter fullname');
+        }
+        if (contact == "") {
+            flag = false;
+            $('#contactError').html('please enter contact number');
+        }
 
 
-            if (address == "") {
-                flag = false;
-                $('#address').html('please enter address');
-            }
-            if (password == "") {
-                flag = false;
-                $('#password').html('please enter password');
-            }
-            if (flag = true) {
+        if (email == "") {
+            flag = false;
+            $('#emailError').html('please enter email');
+        }
 
-                $.ajax({
-                        type: "POST",
-                        url: "./api/add-user.php",
-                        data: { 'name': fullname, 'contact': contact, 'email': email, 'address': address, 'password': password },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.status === 1) {
-                                alert('User Successfully Added')
-                                getUsers()
 
-                            }
-                        }
+        if (address == "") {
+            flag = false;
+            $('#addressEror').html('please enter address');
+        }
+        if (password == "") {
+            flag = false;
+            $('#passwordError').html('please enter password');
+        }
+        if (flag == true) {
+
+            $.ajax({
+                type: "POST",
+                url: "./api/add-user.php",
+                data: { 'name': fullname, 'contact': contact, 'email': email, 'address': address, 'password': password },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === 1) {
+                        alert('User Successfully Added')
+                        getUsers()
+
                     }
-                });
+                }
+
+            });
 
         }
 
@@ -134,7 +134,8 @@ $('body').on('click', '.btn-act', function() {
 
     })
 
-}) $('body').on('click', '.btn-ina', function() {
+})
+$('body').on('click', '.btn-ina', function() {
     const id = $(this).attr('data-id');
     $.ajax({
         url: './api/delete-retrive-user.php',

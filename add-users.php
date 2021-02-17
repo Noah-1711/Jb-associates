@@ -51,31 +51,36 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="fullname" class="control-label mb-1">Full Name:</label>
-                                                        <input id="fullname" name="fullname" type="text" class="form-control">                                                         
+                                                        <input id="fullname" name="fullname" type="text" class="form-control">  
+                                                        <span id="fullnameError"></span>                                                       
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="contact" class="control-label mb-1">Mobile No.:</label>
-                                                        <input id="contact" name="contact" type="text" class="form-control">                                                        
+                                                        <input id="contact" name="contact" type="text" class="form-control">  
+                                                        <span id="contactError"></span>                                                       
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="email" class="control-label mb-1">Email ID:</label>
-                                                        <input id="email" name="email" type="text" class="form-control">                                                        
+                                                        <input id="email" name="email" type="text" class="form-control">   
+                                                        <span id="emailError"></span>                                                      
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="address" class="control-label mb-1">Address:</label>
-                                                        <input id="address" name="address" type="text" class="form-control">                                                        
+                                                        <input id="address" name="address" type="text" class="form-control"> 
+                                                        <span id="addressEror"></span>                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                         <label for="password" class="control-label mb-1">Password:</label>
-                                                        <input id="password" name="password" type="password" class="form-control">                                                        
+                                                        <input id="password" name="password" type="password" class="form-control"> 
+                                                        <span id="passwordError"></span>                                                        
                                                     </div>
                                                 </div>
                                               
