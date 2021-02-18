@@ -1,10 +1,10 @@
-$(document).ready(function () {
+$(document).ready(function() {
     $('.datepicker').datepicker({
         autoclose: true,
         format: 'dd/mm/yyyy'
     })
     getClients()
-    $(".submitBtn").click(function () {
+    $(".submitBtn").click(function() {
 
         var fullname = $("#fullname").val();
         var firmname = $("#firmname").val();
@@ -19,20 +19,72 @@ $(document).ready(function () {
         var deposited_amount = $("#depamount").val()
         var remaining_amount = $("#remamount").val();
         var last_date = $("#subdate").val();
+        var flag = false
+            // console.log('auid', assigned_userid)
+        if (!fullname) {
+            flag = false;
+            $('#fullnameError').html('please enter fullname');
+        }
+        if (firmname == "") {
+            flag = false;
+            $('#firmnameError').html('please enter firmname');
+        }
+        if (contact == "") {
+            flag = false;
+            $('#contactError').html('please enter contact number');
+        }
 
-        $.ajax({
-            type: "POST",
-            url: "./api/add-client.php",
-            data: { 'clientname': fullname, 'firmname': firmname, 'contact': contact, 'email': email, 'address': address, 'task': taskdesc, 'assigned_userid': assigned_userid, 'assigned_username': assigned_user, 'total_amount': total_amount, 'deposited_amount': deposited_amount, 'remaining_amount': remaining_amount, 'submission_date': last_date },
-            dataType: "json",
-            success: function (response) {
-                if (response.status === 1) {
-                    alert('Client Successfully Added')
-                    getClients()
 
+        if (email == "") {
+            flag = false;
+            $('#emailError').html('please enter email');
+        }
+
+        if (address == "") {
+            flag = false;
+            $('#addressEror').html('please enter address');
+        }
+        if (taskdesc == "") {
+            flag = false;
+            $('#remarksError').html('please enter remarks');
+        }
+        // if (assigned_userid == "") {
+        //     flag = false;
+        //     $('#assignedError').html('please select ');
+        // }
+        if (assigned_userid == 0) {
+            flag = false;
+            $('#assignedError').html('please select');
+        }
+        if (total_amount == "") {
+            flag = false;
+            $('#totalError').html('please enter total amount');
+        }
+        if (deposited_amount == "") {
+            flag = false;
+            $('#depositedError').html('please enter deposited amount');
+        }
+
+        if (last_date == "") {
+            flag = false;
+            $('#lastdateError').html('please enter dater ');
+        }
+        if (flag = true) {
+
+            $.ajax({
+                type: "POST",
+                url: "./api/add-client.php",
+                data: { 'clientname': fullname, 'firmname': firmname, 'contact': contact, 'email': email, 'address': address, 'task': taskdesc, 'assigned_userid': assigned_userid, 'assigned_username': assigned_user, 'total_amount': total_amount, 'deposited_amount': deposited_amount, 'remaining_amount': remaining_amount, 'submission_date': last_date },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === 1) {
+                        alert('Client Successfully Added')
+                        getClients()
+
+                    }
                 }
-            }
-        });
+            });
+        }
 
     })
     getUsers()
@@ -69,9 +121,9 @@ function getUsers() {
         url: "./api/get-users.php",
         // data: "data",
         dataType: "json",
-        success: function (response) {
+        success: function(response) {
             count = 1;
-            var html = '<option> Select User </option>';
+            var html = '<option value="0"> Select User </option>';
 
             for (i = 0; i < response.length; i++) {
                 if (response[i].status != 'inactive') {
@@ -239,7 +291,6 @@ $(".updateBtn").click(function(){
                 alert('Client Successfully Updated')
                 getClients()
                 $("#updateClientModal").modal('hide');
-
             }
         },
         error: function(err){

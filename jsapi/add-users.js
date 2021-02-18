@@ -1,28 +1,61 @@
-$(document).ready(function(){
+$(document).ready(function() {
     getUsers()
-    $(".submitBtn").click(function(){
+    $(".submitBtn").click(function() {
 
         //alert('hello')
 
         var fullname = $("#fullname").val();
         var contact = $("#contact").val();
         var email = $("#email").val();
-        var address=$("#address").val();
-        var password = $("#password").val()
+        var address = $("#address").val();
+        var password = $("#password").val();
+        var flag = false;
 
-        $.ajax({
-            type: "POST",
-            url: "./api/add-user.php",
-            data: {'name': fullname, 'contact': contact, 'email': email, 'address':address, 'password':password},
-            dataType: "json",
-            success: function (response) {
-             if(response.status===1){
-                 alert('User Successfully Added')
-                 getUsers()
+        if (!fullname) {
+            flag = false;
+            $('#fullnameError').html('please enter fullname');
+        }
+        if (contact == "") {
+            flag = false;
+            $('#contactError').html('please enter contact number');
+        }
 
-             }
-            }
-        });
+
+        if (email == "") {
+            flag = false;
+            $('#emailError').html('please enter email');
+        }
+
+
+        if (address == "") {
+            flag = false;
+            $('#addressEror').html('please enter address');
+        }
+        if (password == "") {
+            flag = false;
+            $('#passwordError').html('please enter password');
+        }
+        if (flag == true) {
+
+            $.ajax({
+                type: "POST",
+                url: "./api/add-user.php",
+                data: { 'name': fullname, 'contact': contact, 'email': email, 'address': address, 'password': password },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === 1) {
+                        alert('User Successfully Added')
+                        getUsers()
+
+                    }
+                }
+
+            });
+
+        }
+
+
+
 
     })
 
@@ -44,90 +77,88 @@ $(document).ready(function(){
 
 })
 
-function getUsers(){
+function getUsers() {
 
     $.ajax({
         type: "GET",
         url: "./api/get-users.php",
         // data: "data",
         dataType: "json",
-        success: function (response) {
-            count=1;
-            var html='';
-            for(i=0; i<response.length; i++)
-            {
-               
-            html+='<tr>';
-            html+='<td>';
-            html+=''+count+'';
-            html+='</td>';         
-            html+='<td>';
-            html+=''+response[i].username+'';
-            html+='</td>';
-            html+='<td>';
-            html+=''+response[i].contact+'';
-            html+='</td>'
-            // html+='<td>';
-            // html+=''+response[i].password+'';
-            // html+='</td>'
-            html+='<td>';
-            html+=''+response[i].role+'';
-            html+='</td>'
-            html+='<td>';
-            html+=''+response[i].email+'';
-            html+='</td>'
-            html+='<td>';
-            html+=''+response[i].address+'';
-            html+='</td>'
-            html+='<td>';
-            html+=''+response[i].status+'';
-            html+='</td>';
-            if(response[i].status=='inactive'){
-                html+='<td>';
-                html+='<button class="btn btn-sm btn-act btn-success" data-id='+response[i].id+' title="Make User Active"><i class="fa fa-refresh"></i><button>';
-                html+='<button class="btn btn-sm btn-edit btn-warning" data-id='+response[i].id+' title="Edit User"><i class="fa fa-edit"></i><button>'
-                html+='</td>';
-            }
-            else{
-                html+='<td>';
-                html+='<button class="btn btn-sm btn-ina btn-danger" data-id='+response[i].id+' title="Make User Active"><i class="fa fa-trash"></i><button>';
-                html+='<button class="btn btn-sm btn-edit btn-warning" data-id='+response[i].id+' title="Edit User"><i class="fa fa-edit"></i><button>'
-                html+='</td>';
-            }
-            count++;
-          
-        }
+        success: function(response) {
+            count = 1;
+            var html = '';
+            for (i = 0; i < response.length; i++) {
 
-        $("#users-table").html(html)
+                html += '<tr>';
+                html += '<td>';
+                html += '' + count + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].username + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].contact + '';
+                html += '</td>'
+                    // html+='<td>';
+                    // html+=''+response[i].password+'';
+                    // html+='</td>'
+                html += '<td>';
+                html += '' + response[i].role + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].email + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].address + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].status + '';
+                html += '</td>';
+                if (response[i].status == 'inactive') {
+                    html += '<td>';
+                    html += '<button class="btn btn-sm btn-act btn-success" data-id=' + response[i].id + ' title="Make User Active"><i class="fa fa-refresh"></i><button>';
+                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>'
+                    html += '</td>';
+                } else {
+                    html += '<td>';
+                    html += '<button class="btn btn-sm btn-ina btn-danger" data-id=' + response[i].id + ' title="Make User Active"><i class="fa fa-trash"></i><button>';
+                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>'
+                    html += '</td>';
+                }
+                count++;
+
+            }
+
+            $("#users-table").html(html)
 
         }
     });
 }
 
-$('body').on('click', '.btn-act', function(){
+$('body').on('click', '.btn-act', function() {
     const id = $(this).attr('data-id');
     // const retrive = $(this).attr('data-retrive');
     $.ajax({
-        url:'./api/delete-retrive-user.php',
-        method:'POST',
-        data:{'id':id, 'retrive':'retrive'},
-        success:function(data){
-            if(data.status===1){
+        url: './api/delete-retrive-user.php',
+        method: 'POST',
+        data: { 'id': id, 'retrive': 'retrive' },
+        success: function(data) {
+            if (data.status === 1) {
                 getUsers()
-                    }
-                }
+            }
+        }
 
-            })
+    })
 
 })
-$('body').on('click', '.btn-ina', function(){
+$('body').on('click', '.btn-ina', function() {
     const id = $(this).attr('data-id');
     $.ajax({
-        url:'./api/delete-retrive-user.php',
-        method:'POST',
-        data:{'id':id},
-        success:function(data){
-            if(data.status===1){
+        url: './api/delete-retrive-user.php',
+        method: 'POST',
+        data: { 'id': id },
+        success: function(data) {
+            if (data.status === 1) {
                 getUsers()
 
             }
@@ -196,5 +227,9 @@ $(".updateBtn").click(function(){
 // 	"contacts": "1",
 // 	"is_schedule": "y",
 // 	"schedule_type": "one_time",
+// 	"schedule_time": "1613499420"
+// }"schedule_type": "one_time",
+// 	"schedule_time": "1613499420"
+// }"schedule_type": "one_time",
 // 	"schedule_time": "1613499420"
 // }
