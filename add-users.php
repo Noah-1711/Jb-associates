@@ -65,7 +65,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="email" class="control-label mb-1">Email ID:</label>
-                                                        <input id="email" name="email" type="text" class="form-control">   
+                                                        <input id="email" name="email" type="email" class="form-control">   
                                                         <span id="emailError"></span>                                                      
                                                     </div>
                                                 </div>

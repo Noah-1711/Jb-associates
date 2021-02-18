@@ -4,7 +4,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                           Samrat Karate
+                           JB-Associate
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -46,7 +46,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/samrat-logo.png" width="180px" style="height:70px !important" alt="Samrat Karate Admin" />
+                    <img src="images/logo.jpg" width="180px" style="height:70px !important" alt="Samrat Karate Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
