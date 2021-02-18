@@ -139,7 +139,58 @@
         </div>
 
     </div>
-
+<!-- Modal -->
+<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update User Info </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+ 
+      <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="ufullname" class="control-label mb-1">Full Name:</label>
+                                                        <input id="ufullname" name="ufullname" type="text" class="form-control">                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="ucontact" class="control-label mb-1">Mobile No.:</label>
+                                                        <input id="ucontact" name="ucontact" type="text" class="form-control">                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="uemail" class="control-label mb-1">Email ID:</label>
+                                                        <input id="uemail" name="uemail" type="text" class="form-control">                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="uaddress" class="control-label mb-1">Address:</label>
+                                                        <input id="uaddress" name="uaddress" type="text" class="form-control">                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="upassword" class="control-label mb-1">Password:</label>
+                                                        <input id="upassword" name="upassword" type="text" class="form-control">                                                        
+                                                    </div>
+                                                </div>
+                                              
+                                            </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary updateBtn">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 <?php include('./include/scripts.php') ?>

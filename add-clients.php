@@ -184,7 +184,110 @@
 
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="updateClientModal" tabindex="-1" aria-labelledby="updateClientModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Client Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     
+      <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="ufullname" class="control-label mb-1">Full Name:</label>
+                                                        <input id="ufullname" name="ufullname" type="text" class="form-control">                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="ufirmname" class="control-label mb-1">Firm Name:</label>
+                                                        <input id="ufirmname" name="ufirmname" type="text" class="form-control">                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="ucontact" class="control-label mb-1">Mobile No.:</label>
+                                                        <input id="ucontact" name="ucontact" type="text" class="form-control">                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="uemail" class="control-label mb-1">Email ID:</label>
+                                                        <input id="uemail" name="uemail" type="text" class="form-control">                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="uaddress" class="control-label mb-1">Address:</label>
+                                                        <textarea id="uaddress" name="uaddress" class="form-control"></textarea>                                                     
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="utaskdesc" class="control-label mb-1">Task Description / Remarks:</label>
+                                                        <textarea id="utaskdesc" name="utaskdesc"  class="form-control"></textarea>                                                      
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="uassigned_user" class="control-label mb-1">Assign User:</label>
+                                                        <select name="uassigned_user" id="uassigned_user" class='form-control assigned_user' >
 
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                <label for="current_status" class="control-label mb-1">Status:</label>
+                                                        <select name="current_status" id="current_status" class='form-control' >
+                                                                <option value="0"> Select Status </option>
+                                                                <option value="pending">Pending</option>
+                                                                <option value="completed">Completed</option>
+                                                                <option value="Rejected">Rejected</option>
+                                                        </select>
+                                                </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="utotamount" class="control-label mb-1">Total Amount:</label>
+                                                        <input id="utotamount" name="utotamount" type="text" class="form-control">                                                   
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="udepamount" class="control-label mb-1">Total Deposited Amount: </label>
+                                                        <input id="udepamount" name="udepamount" type="text" class="form-control">                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="uremamount" class="control-label mb-1">Remaining Amount:</label>
+                                                        <input id="uremamount" name="remamount" type="text" class="form-control" readonly>                                                      
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                        <label for="usubdate" class="control-label mb-1">Last date to submit :</label>
+                                                        <input id="usubdate" name="usubdate" type="text" class="form-control datepicker">                                                      
+                                                </div>
+                                                </div>
+                                              
+                                            </div>
+                                          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary updateBtn">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 <?php include('./include/scripts.php') ?>
 <script src='./js/bootstrap-datepicker.min.js'></script>

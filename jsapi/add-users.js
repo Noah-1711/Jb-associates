@@ -26,6 +26,22 @@ $(document).ready(function(){
 
     })
 
+
+    // $(document).ready(function () {
+    //     // http://cloud.smsindiahub.in/vendorsms/pushsms.aspx?user=abc&password=xyz&msisdn=919898xxxxxx&sid=SenderId&msg=test%20message&fl=0&gwid=2
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "http://cloud.smsindiahub.in/vendorsms/pushsms.aspx",
+    //         crossDomain: true,
+    //         data: {'user':'Aditya Bhalerao', 'password':'aditya1646', 'mssidn':'9422461646', 'msg':'hi aditya','fl':0, 'gwid':2},
+    //         dataType: "json",
+    //         success: function (response) {
+    //             console.log(response)
+    //         }
+    //     });
+
+    // });
+
 })
 
 function getUsers(){
@@ -119,6 +135,57 @@ $('body').on('click', '.btn-ina', function(){
 
     })
 
+})
+
+
+$("body").on('click', '.btn-edit', function(){
+ 
+    const id = $(this).attr('data-id');
+    
+    $.ajax({
+        type: "GET",
+        url: "./api/get-user-by-id.php",
+        data: {'userid': id},
+        dataType: "json",
+        success: function (response) {
+            console.log(response)
+
+            $("#ufullname").val(response[0].username)
+            $("#ucontact").val(response[0].contact)
+            $("#uemail").val(response[0].email)
+            $("#upassword").val(response[0].password)
+            $("#uaddress").val(response[0].address)
+            $('.updateBtn').attr('data-id', response[0].id)        
+            $("#updateUserModal").modal('show');
+        }
+    });
+      
+
+})
+
+$(".updateBtn").click(function(){
+
+    var id = $(this).attr('data-id')
+
+    var ufullname = $("#ufullname").val()
+    var ucontact = $("#ucontact").val()
+    var uemail = $("#uemail").val()
+    var upassword = $("#upassword").val()
+    var uaddress = $("#uaddress").val()
+
+    // console.log(ufullname, ucontact, uemail, upassword, uaddress)
+
+    $.ajax({
+        type: "POST",
+        url: "./api/update-users.php",
+        data: {'id':id, 'ufullname':ufullname, 'ucontact':ucontact, 'uemail': uemail, 'upassword':upassword, 'uaddress':uaddress},
+        dataType: "json",
+        success: function (response) {
+            alert('User Updated')
+            getUsers();
+            $("#updateUserModal").modal('hide');
+        }
+    });
 })
 
 // {
