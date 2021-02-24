@@ -31,9 +31,15 @@
                                 <i class="fas fa-user"></i>Manage Clients</a>
                         </li> 
                         <li>
+                              <a href="add-services.php">
+                                <i class="fas fa-user"></i>Manage Services</a>
+                        </li> 
+                        
+                        <li>
                             <a href="enquiry.php">
                                 <i class="far fa-check-square"></i>Enquiry</a>
                         </li>
+                        
                     
                        
                     </ul>
@@ -65,12 +71,17 @@
                               <a href="add-clients.php">
                                 <i class="fas fa-user"></i>Manage Clients</a>
                         </li>
+                        <li>
+                              <a href="add-services.php">
+                                <i class="fas fa-user"></i>Manage Services</a>
+                        </li> 
                     
                       
                         <li>
                             <a href="enquiry.php">
                                 <i class="far fa-check-square"></i>Enquiries</a>
                         </li>
+                       
                     
                     </ul>
                 </nav>

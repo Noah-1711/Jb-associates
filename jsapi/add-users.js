@@ -1,18 +1,189 @@
-function getUsers() { $.ajax({ type: "GET", url: "./api/get-users.php", dataType: "json", success: function(t) { count = 1; var a = ""; for (i = 0; i < t.length; i++) a += "<tr>", a += "<td>", a += "" + count, a += "</td>", a += "<td>", a += "" + t[i].username, a += "</td>", a += "<td>", a += "" + t[i].contact, a += "</td>", a += "<td>", a += "" + t[i].role, a += "</td>", a += "<td>", a += "" + t[i].email, a += "</td>", a += "<td>", a += "" + t[i].address, a += "</td>", a += "<td>", a += "" + t[i].status, a += "</td>", "inactive" == t[i].status ? (a += "<td>", a += '<button class="btn btn-sm btn-act btn-success" data-id=' + t[i].id + ' title="Make User Active"><i class="fa fa-refresh"></i><button>', a += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + t[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>', a += "</td>") : (a += "<td>", a += '<button class="btn btn-sm btn-ina btn-danger" data-id=' + t[i].id + ' title="Make User Active"><i class="fa fa-trash"></i><button>', a += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + t[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>', a += "</td>"), count++;
-            $("#users-table").html(a) } }) }
-$(document).ready(function() { getUsers(), $(".submitBtn").click(function() { $("#fullnameError").html(""), $("#contactError").html(""), $("#emailError").html(""), $("#addressEror").html(""), $("#passwordError").html(""); var t = $("#fullname").val(),
-            a = $("#contact").val(),
-            e = $("#email").val(),
-            s = $("#address").val(),
-            d = $("#password").val(),
-            r = !0;
-        t || (r = !1, $("#fullnameError").html("please enter fullname")), "" == a && (r = !1, $("#contactError").html("please enter contact number")), "" == e && (r = !1, $("#emailError").html("please enter email")), "" == s && (r = !1, $("#addressEror").html("please enter address")), "" == d && (r = !1, $("#passwordError").html("please enter password")), 1 == r && $.ajax({ type: "POST", url: "./api/add-user.php", data: { name: t, contact: a, email: e, address: s, password: d }, dataType: "json", success: function(t) { 1 === t.status && (alert("User Successfully Added"), getUsers()) } }) }) }), $("body").on("click", ".btn-act", function() { const t = $(this).attr("data-id");
-    $.ajax({ url: "./api/delete-retrive-user.php", method: "POST", data: { id: t, retrive: "retrive" }, success: function(t) { 1 === t.status && getUsers() } }) }), $("body").on("click", ".btn-ina", function() { const t = $(this).attr("data-id");
-    $.ajax({ url: "./api/delete-retrive-user.php", method: "POST", data: { id: t }, success: function(t) { 1 === t.status && getUsers() } }) }), $("body").on("click", ".btn-edit", function() { const t = $(this).attr("data-id");
-    $.ajax({ type: "GET", url: "./api/get-user-by-id.php", data: { userid: t }, dataType: "json", success: function(t) { console.log(t), $("#ufullname").val(t[0].username), $("#ucontact").val(t[0].contact), $("#uemail").val(t[0].email), $("#upassword").val(t[0].password), $("#uaddress").val(t[0].address), $(".updateBtn").attr("data-id", t[0].id), $("#updateUserModal").modal("show") } }) }), $(".updateBtn").click(function() { var t = $(this).attr("data-id"),
-        a = $("#ufullname").val(),
-        e = $("#ucontact").val(),
-        s = $("#uemail").val(),
-        d = $("#upassword").val(),
-        r = $("#uaddress").val();
-    $.ajax({ type: "POST", url: "./api/update-users.php", data: { id: t, ufullname: a, ucontact: e, uemail: s, upassword: d, uaddress: r }, dataType: "json", success: function(t) { alert("User Updated"), getUsers(), $("#updateUserModal").modal("hide") } }) });
+$(document).ready(function() {
+    getUsers()
+    $(".submitBtn").click(function() {
+        $('#fullnameError').html('');
+        $('#contactError').html('');
+        $('#emailError').html('');
+        $('#addressEror').html('');
+        $('#passwordError').html('');
+        //alert('hello')
+
+        var fullname = $("#fullname").val();
+        var contact = $("#contact").val();
+        var email = $("#email").val();
+        var address = $("#address").val();
+        var password = $("#password").val();
+        var flag = true;
+
+        if (!fullname) {
+            flag = false;
+            $('#fullnameError').html('please enter fullname');
+        }
+        if (contact == "") {
+            flag = false;
+            $('#contactError').html('please enter contact number');
+        }
+
+        if (flag == true) {
+            $.ajax({
+                type: "POST",
+                url: "./api/add-user.php",
+                data: { 'name': fullname, 'contact': contact, 'email': email, 'address': address, 'password': password },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === 1) {
+                        alert('User Successfully Added')
+                        getUsers()
+
+                    }
+                }
+
+            });
+
+        }
+
+
+
+
+    })
+
+
+
+})
+
+function getUsers() {
+
+    $.ajax({
+        type: "GET",
+        url: "./api/get-users.php",
+        dataType: "json",
+        success: function(response) {
+            count = 1;
+            var html = '';
+            for (i = 0; i < response.length; i++) {
+
+                html += '<tr>';
+                html += '<td>';
+                html += '' + count + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].username + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].contact + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].role + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].email + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].address + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].status + '';
+                html += '</td>';
+                if (response[i].status == 'inactive') {
+                    html += '<td>';
+                    html += '<button class="btn btn-sm btn-act btn-success" data-id=' + response[i].id + ' title="Make User Active"><i class="fa fa-refresh"></i><button>';
+                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>'
+                    html += '</td>';
+                } else {
+                    html += '<td>';
+                    html += '<button class="btn btn-sm btn-ina btn-danger" data-id=' + response[i].id + ' title="Make User Active"><i class="fa fa-trash"></i><button>';
+                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>'
+                    html += '</td>';
+                }
+                count++;
+
+            }
+
+            $("#users-table").html(html)
+            $('#tbluser').dataTable({
+                "ordering": false
+            });
+
+        }
+    });
+}
+
+$('body').on('click', '.btn-act', function() {
+    const id = $(this).attr('data-id');
+    $.ajax({
+        url: './api/delete-retrive-user.php',
+        method: 'POST',
+        data: { 'id': id, 'retrive': 'retrive' },
+        success: function(data) {
+            if (data.status === 1) {
+                getUsers()
+            }
+        }
+
+    })
+
+})
+$('body').on('click', '.btn-ina', function() {
+    const id = $(this).attr('data-id');
+    $.ajax({
+        url: './api/delete-retrive-user.php',
+        method: 'POST',
+        data: { 'id': id },
+        success: function(data) {
+            if (data.status === 1) {
+                getUsers()
+
+            }
+        }
+
+    })
+
+})
+
+
+$("body").on('click', '.btn-edit', function() {
+
+    const id = $(this).attr('data-id');
+
+    $.ajax({
+        type: "GET",
+        url: "./api/get-user-by-id.php",
+        data: { 'userid': id },
+        dataType: "json",
+        success: function(response) {
+            console.log(response)
+
+            $("#ufullname").val(response[0].username)
+            $("#ucontact").val(response[0].contact)
+            $("#uemail").val(response[0].email)
+            $("#upassword").val(response[0].password)
+            $("#uaddress").val(response[0].address)
+            $('.updateBtn').attr('data-id', response[0].id)
+            $("#updateUserModal").modal('show');
+        }
+    });
+
+
+})
+
+$(".updateBtn").click(function() {
+
+    var id = $(this).attr('data-id')
+
+    var ufullname = $("#ufullname").val()
+    var ucontact = $("#ucontact").val()
+    var uemail = $("#uemail").val()
+    var upassword = $("#upassword").val()
+    var uaddress = $("#uaddress").val()
+    $.ajax({
+        type: "POST",
+        url: "./api/update-users.php",
+        data: { 'id': id, 'ufullname': ufullname, 'ucontact': ucontact, 'uemail': uemail, 'upassword': upassword, 'uaddress': uaddress },
+        dataType: "json",
+        success: function(response) {
+            alert('User Updated')
+            getUsers();
+            $("#updateUserModal").modal('hide');
+        }
+    });
+})

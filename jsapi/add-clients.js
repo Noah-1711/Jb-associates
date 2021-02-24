@@ -1,40 +1,303 @@
-var total;
+$(document).ready(function() {
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: 'dd/mm/yyyy'
+    })
+    getClients()
+    $(".submitBtn").click(function() {
+        $('#fullnameError').html('');
+        $('#firmnameError').html('');
+        $('#contactError').html('');
+        $('#emailError').html('');
+        $('#addressError').html('');
+        $('#remarksError').html('');
+        $('#assignedError').html('');
+        $('#totalError').html('');
+        $('#depositedError').html('');
+        $('#lastdateError').html('');
 
-function getUsers() { $.ajax({ type: "GET", url: "./api/get-users.php", dataType: "json", success: function(t) { count = 1; var a = '<option value="0"> Select User </option>'; for (i = 0; i < t.length; i++) "inactive" != t[i].status && (a += "<option value=" + t[i].id + ">" + t[i].username + "</option>");
-            $("#assigned_user, .assigned_user").html(a) } }) }
 
-function getClients() { $.ajax({ type: "GET", url: "./api/get-clients.php", dataType: "json", success: function(t) { count = 1; var a = ""; for (i = 0; i < t.length; i++) a += "<tr>", a += "<td>", a += "" + count, a += "</td>", a += "<td>", a += "" + t[i].clientname, a += "</td>", a += "<td>", a += "" + t[i].address, a += "</td>", a += "<td>", a += "" + t[i].firmname, a += "</td>", a += "<td>", a += "" + t[i].contact, a += "</td>", a += "<td>", a += "" + t[i].email, a += "</td>", a += "<td>", a += "" + t[i].task, a += "</td>", a += "<td>", a += "" + t[i].assigned_username, a += "</td>", a += "<td>", a += "" + t[i].status, a += "</td>", a += "<td>", a += "" + t[i].total_amount, a += "</td>", a += "<td>", a += "" + t[i].deposited_amount, a += "</td>", a += "<td>", a += "" + t[i].remaining_amount, a += "</td>", a += "<td>", a += "" + t[i].submission_date, a += "</td>", a += "<td>", a += "" + t[i].registered_date, a += "</td>", a += "<td>", a += '<button class="btn btn-sm btn-update btn-warning" title="update task" data-id=' + t[i].id + '><i class="fa fa-edit"></i><button>', a += "</td>", count++;
-            $("#clients-table").html(a) } }) }
-$(document).ready(function() { $(".datepicker").datepicker({ autoclose: !0, format: "dd/mm/yyyy" }), getClients(), $(".submitBtn").click(function() { $("#fullnameError").html(""), $("#firmnameError").html(""), $("#contactError").html(""), $("#emailError").html(""), $("#addressError").html(""), $("#remarksError").html(""), $("#assignedError").html(""), $("#totalError").html(""), $("#depositedError").html(""), $("#lastdateError").html(""); var t = $("#fullname").val(),
-            a = $("#firmname").val(),
-            e = $("#contact").val(),
-            n = $("#email").val(),
-            s = $("#address").val(),
-            r = $("#taskdesc").val(),
-            u = $("#assigned_user").val(),
-            l = $("#assigned_user option").html(),
-            o = $("#totamount").val(),
-            i = $("#depamount").val(),
-            d = $("#remamount").val(),
-            m = $("#subdate").val();
-        t || (!1, $("#fullnameError").html("please enter fullname")), "" == a && (!1, $("#firmnameError").html("please enter firmname")), "" == e && (!1, $("#contactError").html("please enter contact number")), "" == n && (!1, $("#emailError").html("please enter email")), "" == s && (!1, $("#addressError").html("please enter address")), "" == r && (!1, $("#remarksError").html("please enter remarks")), 0 == u && (!1, $("#assignedError").html("please select")), "" == o && (!1, $("#totalError").html("please enter total amount")), "" == i && (!1, $("#depositedError").html("please enter deposited amount")), "" == m && (!1, $("#lastdateError").html("please enter dater ")), !0 && $.ajax({ type: "POST", url: "./api/add-client.php", data: { clientname: t, firmname: a, contact: e, email: n, address: s, task: r, assigned_userid: u, assigned_username: l, total_amount: o, deposited_amount: i, remaining_amount: d, submission_date: m }, dataType: "json", success: function(t) { 1 === t.status && (alert("Client Successfully Added"), getClients()) } }) }), getUsers() }), $("#totamount").keyup(function() {
-    (total = parseInt($("#totamount").val())) ? $("#depamount").removeAttr("readonly"): $("#depamount").attr("readonly", !0) }), $("#depamount").keyup(function() { console.log(total); var t = parseInt($(this).val()),
-        a = total - t;
-    $("#remamount").val(a) }), $("body").on("click", ".btn-update", function() { var t = $(this).attr("data-id");
-    $(".updateBtn").attr("data-id", t), $.ajax({ type: "GET", url: "./api/get-clients-by-id.php", data: { clientid: t }, dataType: "json", success: function(t) { console.log(t), $("#ufullname").val(t[0].clientname), $("#ufirmname").val(t[0].firmname), $("#ucontact").val(t[0].contact), $("#uemail").val(t[0].email), $("#uaddress").val(t[0].address), $("#utaskdesc").val(t[0].task), $("#uassigned_user").val(t[0].id), $("#current_status").val(t[0].status), $("#utotamount").val(t[0].total_amount), $("#udepamount").val(t[0].deposited_amount), $("#uremamount").val(t[0].remaining_amount), $("#usubdate").val(t[0].submission_date); var a = parseInt($("#utotamount").val());
-            $("#utotamount").keyup(function() { a = parseInt($("#utotamount").val()), iudepamount = parseInt($("#udepamount").val()), newRemaining = a - iudepamount, console.log(newRemaining), $("#uremamount").val(newRemaining) }), $("#udepamount").keyup(function() { console.log(a); var t = parseInt($(this).val()),
-                    e = a - t;
-                $("#uremamount").val(e) }), $("#updateClientModal").modal("show") } }) }), $(".updateBtn").click(function() { id = $(this).attr("data-id"); var t = $("#ufullname").val(),
-        a = $("#ufirmname").val(),
-        e = $("#ucontact").val(),
-        n = $("#uemail").val(),
-        s = $("#uaddress").val(),
-        r = $("#utaskdesc").val(),
-        u = $("#uassigned_user").val(),
-        l = $("#uassigned_user option:selected").html(),
-        o = $("#utotamount").val(),
-        i = $("#udepamount").val(),
-        d = $("#uremamount").val(),
-        m = $("#usubdate").val(),
-        c = $("#current_status").val();
-    $.ajax({ type: "POST", url: "./api/update-client.php", data: { id: id, uclientname: t, ufirmname: a, ucontact: e, uemail: n, uaddress: s, utask: r, uupdated_status: c, uassigned_userid: u, uassigned_username: l, utotal_amount: o, udeposited_amount: i, uremaining_amount: d, usubmission_date: m }, dataType: "json", success: function(t) { 1 === t.status && (alert("Client Successfully Updated"), getClients(), $("#updateClientModal").modal("hide")) }, error: function(t) { alert("Error Occured, Please Try After Sometime.") } }) });
+
+
+
+
+
+
+        var fullname = $("#fullname").val();
+        var firmname = $("#firmname").val();
+        var contact = $("#contact").val();
+        var email = $("#email").val();
+        var address = $("#address").val();
+        var taskdesc = $("#taskdesc").val();
+        var assigned_userid = $("#assigned_user").val();
+        var assigned_user = $("#assigned_user option").html();
+        var total_amount = $("#totamount").val();
+        var deposited_amount = $("#depamount").val()
+        var remaining_amount = $("#remamount").val();
+        var last_date = $("#subdate").val();
+        var flag = true
+        if (!fullname) {
+            flag = false;
+            $('#fullnameError').html('please enter fullname');
+        }
+        if (firmname == "") {
+            flag = false;
+            $('#firmnameError').html('please enter firmname');
+        }
+        if (contact == "") {
+            flag = false;
+            $('#contactError').html('please enter contact number');
+        }
+
+
+        if (email == "") {
+            flag = false;
+            $('#emailError').html('please enter email');
+        }
+
+        if (address == "") {
+            flag = false;
+            $('#addressError').html('please enter address');
+        }
+        if (taskdesc == "") {
+            flag = false;
+            $('#remarksError').html('please enter remarks');
+        }
+        if (assigned_userid == 0) {
+            flag = false;
+            $('#assignedError').html('please select');
+        }
+        if (total_amount == "") {
+            flag = false;
+            $('#totalError').html('please enter total amount');
+        }
+        if (deposited_amount == "") {
+            flag = false;
+            $('#depositedError').html('please enter deposited amount');
+        }
+
+        if (last_date == "") {
+            flag = false;
+            $('#lastdateError').html('please enter dater ');
+        }
+        if (flag = true) {
+
+            $.ajax({
+                type: "POST",
+                url: "./api/add-client.php",
+                data: { 'clientname': fullname, 'firmname': firmname, 'contact': contact, 'email': email, 'address': address, 'task': taskdesc, 'assigned_userid': assigned_userid, 'assigned_username': assigned_user, 'total_amount': total_amount, 'deposited_amount': deposited_amount, 'remaining_amount': remaining_amount, 'submission_date': last_date },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === 1) {
+                        alert('Client Successfully Added')
+                        getClients()
+
+                    }
+                }
+            });
+        }
+
+    })
+    getUsers();
+
+    if (!total) {
+        $("#depamount").attr('readonly', true)
+    } else {
+        $("#depamount").removeAttr('readonly')
+
+    }
+
+
+})
+
+$("#depamount").keyup(function() {
+    console.log(total);
+    var depamount = parseInt($(this).val());
+    var remaining = total - depamount;
+    $("#remamount").val(remaining)
+})
+
+
+function getUsers() {
+
+    $.ajax({
+        type: "GET",
+        url: "./api/get-users.php",
+        dataType: "json",
+        success: function(response) {
+            count = 1;
+            var html = '<option value="0"> Select User </option>';
+
+            for (i = 0; i < response.length; i++) {
+                if (response[i].status != 'inactive') {
+                    html += '<option value=' + response[i].id + '>' + response[i].username + '</option>';
+                }
+
+            }
+
+            $("#assigned_user, .assigned_user").html(html)
+
+        }
+    });
+}
+
+function getClients() {
+
+
+
+
+    $.ajax({
+        type: "GET",
+        url: "./api/get-clients.php",
+        dataType: "json",
+        success: function(response) {
+            count = 1;
+            var html = '';
+            for (i = 0; i < response.length; i++) {
+                html += '<tr>';
+                html += '<td>';
+                html += '' + count + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].clientname + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].address + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].firmname + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].contact + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].email + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].task + '';
+                html += '</td>'
+                html += '<td>';
+                html += '' + response[i].assigned_username + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].status + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].total_amount + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].deposited_amount + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].remaining_amount + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].submission_date + '';
+                html += '</td>';
+                html += '<td>';
+                html += '' + response[i].registered_date + '';
+                html += '</td>';
+                html += '<td>';
+                html += '<button class="btn btn-sm btn-update btn-warning" title="update task" data-id=' + response[i].id + '><i class="fa fa-edit"></i><button>';
+                html += '</td>';
+                count++;
+
+            }
+
+            $("#clients-table").html(html)
+            $('#tblclient').dataTable({
+                "ordering": false
+            });
+
+
+        }
+
+
+    });
+}
+
+
+$('body').on('click', '.btn-update', function() {
+
+    var id = $(this).attr('data-id');
+    $('.updateBtn').attr('data-id', id)
+    $.ajax({
+        type: "GET",
+        url: "./api/get-clients-by-id.php",
+        data: { 'clientid': id },
+        dataType: "json",
+        success: function(response) {
+            console.log(response)
+            $("#ufullname").val(response[0].clientname);
+            $("#ufirmname").val(response[0].firmname);
+            $("#ucontact").val(response[0].contact);
+            $("#uemail").val(response[0].email);
+            $("#uaddress").val(response[0].address);
+            $("#utaskdesc").val(response[0].task);
+            $("#uassigned_user").val(response[0].id)
+            $("#current_status").val(response[0].status)
+            $("#utotamount").val(response[0].total_amount);
+            $("#udepamount").val(response[0].deposited_amount);
+            $("#uremamount").val(response[0].remaining_amount);
+            $("#usubdate").val(response[0].submission_date)
+            var utotal = parseInt($("#utotamount").val())
+
+            $("#utotamount").keyup(function() {
+
+                utotal = parseInt($("#utotamount").val());
+                iudepamount = parseInt($("#udepamount").val());
+                newRemaining = utotal - iudepamount;
+                console.log(newRemaining)
+                $("#uremamount").val(newRemaining)
+            })
+
+            $("#udepamount").keyup(function() {
+                console.log(utotal);
+                var udepamount = parseInt($(this).val());
+                var uremaining = utotal - udepamount;
+                $("#uremamount").val(uremaining)
+            })
+
+            $("#updateClientModal").modal('show');
+
+        }
+    });
+
+})
+
+$(".updateBtn").click(function() {
+    id = $(this).attr('data-id');
+    var ufullname = $("#ufullname").val();
+    var ufirmname = $("#ufirmname").val();
+    var ucontact = $("#ucontact").val();
+    var uemail = $("#uemail").val();
+    var uaddress = $("#uaddress").val();
+    var utaskdesc = $("#utaskdesc").val();
+    var uassigned_userid = $("#uassigned_user").val();
+    var uassigned_user = $("#uassigned_user option:selected").html();
+    var utotal_amount = $("#utotamount").val();
+    var udeposited_amount = $("#udepamount").val()
+    var uremaining_amount = $("#uremamount").val();
+    var ulast_date = $("#usubdate").val();
+    var updated_status = $("#current_status").val()
+
+    $.ajax({
+        type: "POST",
+        url: "./api/update-client.php",
+        data: { 'id': id, 'uclientname': ufullname, 'ufirmname': ufirmname, 'ucontact': ucontact, 'uemail': uemail, 'uaddress': uaddress, 'utask': utaskdesc, 'uupdated_status': updated_status, 'uassigned_userid': uassigned_userid, 'uassigned_username': uassigned_user, 'utotal_amount': utotal_amount, 'udeposited_amount': udeposited_amount, 'uremaining_amount': uremaining_amount, 'usubmission_date': ulast_date },
+        dataType: "json",
+        success: function(response) {
+            if (response.status === 1) {
+                alert('Client Successfully Updated')
+                getClients()
+                $("#updateClientModal").modal('hide');
+            }
+        },
+        error: function(err) {
+            alert('Error Occured, Please Try After Sometime.')
+
+        }
+    });
+
+
+})

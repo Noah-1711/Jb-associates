@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="card-body">
                                     <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
+                                    <table class="table table-borderless table-data3" id="tbluser">
                                         <thead>
                                             <tr><th>#</th>
                                                 <th>Name</th>

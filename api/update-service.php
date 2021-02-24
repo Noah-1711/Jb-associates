@@ -2,20 +2,19 @@
 <?php
  
     
- if(!empty($_POST['ufullname']) || !empty($_POST['upassword']))
+ if(!empty($_POST['uservicename']) || !empty($_POST['udescription']))
  {
  
  // echo "<img src='$path' />";
  $id = $_POST['id'];
- $username = $_POST['ufullname']; 
- $password = $_POST['upassword'];
+ $servicename = $_POST['uservicename']; 
+ $description = $_POST['udescription'];
 
-    
  //include database configuration file
  include_once '../include/connection.php';
   
  //insert form data in the database
- $update = "update tbl_user set username='".$username."', address='".$address."', contact='".$contact."', email='".$email."', password='".$password."' where id='".$id."'";
+ $update = "update tbl_services set services='".$servicename."', description='".$description."'  where id=$id";
 //  $insert = $connection->query();
  if(mysqli_query($connection, $update)){
     // echo "Records were updated successfully.";    
