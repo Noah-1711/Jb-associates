@@ -5,6 +5,23 @@ $(document).ready(function() {
     })
     getClients()
     $(".submitBtn").click(function() {
+        $('#fullnameError').html('');
+        $('#firmnameError').html('');
+        $('#contactError').html('');
+        $('#emailError').html('');
+        $('#addressError').html('');
+        $('#remarksError').html('');
+        $('#assignedError').html('');
+        $('#totalError').html('');
+        $('#depositedError').html('');
+        $('#lastdateError').html('');
+
+
+
+
+
+
+
 
         var fullname = $("#fullname").val();
         var firmname = $("#firmname").val();
@@ -14,7 +31,6 @@ $(document).ready(function() {
         var taskdesc = $("#taskdesc").val();
         var assigned_userid = $("#assigned_user").val();
         var assigned_user = $("#assigned_user option").html();
-        // var assigned_userid = localStorage.getItem('userid')
         var total_amount = $("#totamount").val();
         var deposited_amount = $("#depamount").val()
         var remaining_amount = $("#remamount").val();
@@ -35,40 +51,36 @@ $(document).ready(function() {
         }
 
 
-        if (email == "") {
-            flag = false;
-            $('#emailError').html('please enter email');
-        }
-
-        if (address == "") {
-            flag = false;
-            $('#addressEror').html('please enter address');
-        }
-        if (taskdesc == "") {
-            flag = false;
-            $('#remarksError').html('please enter remarks');
-        }
-        // if (assigned_userid == "") {
+        // if (email == "") {
         //     flag = false;
-        //     $('#assignedError').html('please select ');
+        //     $('#emailError').html('please enter email');
         // }
-        if (assigned_userid == 0) {
-            flag = false;
-            $('#assignedError').html('please select');
-        }
-        if (total_amount == "") {
-            flag = false;
-            $('#totalError').html('please enter total amount');
-        }
-        if (deposited_amount == "") {
-            flag = false;
-            $('#depositedError').html('please enter deposited amount');
-        }
 
-        if (last_date == "") {
-            flag = false;
-            $('#lastdateError').html('please enter dater ');
-        }
+        // if (address == "") {
+        //     flag = false;
+        //     $('#addressError').html('please enter address');
+        // }
+        // if (taskdesc == "") {
+        //     flag = false;
+        //     $('#remarksError').html('please enter remarks');
+        // }
+        // if (assigned_userid == 0) {
+        //     flag = false;
+        //     $('#assignedError').html('please select');
+        // }
+        // if (total_amount == "") {
+        //     flag = false;
+        //     $('#totalError').html('please enter total amount');
+        // }
+        // if (deposited_amount == "") {
+        //     flag = false;
+        //     $('#depositedError').html('please enter deposited amount');
+        // }
+
+        // if (last_date == "") {
+        //     flag = false;
+        //     $('#lastdateError').html('please enter dater ');
+        // }
         if (flag = true) {
 
             $.ajax({
@@ -78,7 +90,21 @@ $(document).ready(function() {
                 dataType: "json",
                 success: function(response) {
                     if (response.status === 1) {
-                        alert('Client Successfully Added')
+                        $.notify({
+                            // options
+                            message: 'Client Successfully Added' 
+                        },{
+                            // settings
+                            type: 'success',
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            placement: {
+                                from: "top",
+                                align: "center"
+                            },
+                        });
                         getClients()
 
                     }
@@ -87,18 +113,11 @@ $(document).ready(function() {
         }
 
     })
-    getUsers()
-
-})
-var total;
-$("#totamount").keyup(function () {
-
-    total = parseInt($("#totamount").val());
+    getUsers();
 
     if (!total) {
         $("#depamount").attr('readonly', true)
-    }
-    else {
+    } else {
         $("#depamount").removeAttr('readonly')
 
     }
@@ -106,7 +125,7 @@ $("#totamount").keyup(function () {
 
 })
 
-$("#depamount").keyup(function () {
+$("#depamount").keyup(function() {
     console.log(total);
     var depamount = parseInt($(this).val());
     var remaining = total - depamount;
@@ -119,7 +138,6 @@ function getUsers() {
     $.ajax({
         type: "GET",
         url: "./api/get-users.php",
-        // data: "data",
         dataType: "json",
         success: function(response) {
             count = 1;
@@ -146,9 +164,8 @@ function getClients() {
     $.ajax({
         type: "GET",
         url: "./api/get-clients.php",
-        // data: "data",
         dataType: "json",
-        success: function (response) {
+        success: function(response) {
             count = 1;
             var html = '';
             for (i = 0; i < response.length; i++) {
@@ -195,28 +212,27 @@ function getClients() {
                 html += '<td>';
                 html += '' + response[i].registered_date + '';
                 html += '</td>';
-                // if(response[i].status=='inactive'){
-                //     html+='<td>';
-                //     html+='<button class="btn btn-sm btn-act btn-success" data-id='+response[i].id+'><i class="fa fa-edit"></i><button>';
-                //     html+='</td>';
-                // }
-                // else{
                 html += '<td>';
                 html += '<button class="btn btn-sm btn-update btn-warning" title="update task" data-id=' + response[i].id + '><i class="fa fa-edit"></i><button>';
                 html += '</td>';
-                // }
                 count++;
 
             }
 
             $("#clients-table").html(html)
+            $('#tblclient').dataTable({
+                "ordering": false
+            });
+
 
         }
+
+
     });
 }
 
 
-$('body').on('click', '.btn-update', function () {
+$('body').on('click', '.btn-update', function() {
 
     var id = $(this).attr('data-id');
     $('.updateBtn').attr('data-id', id)
@@ -225,7 +241,7 @@ $('body').on('click', '.btn-update', function () {
         url: "./api/get-clients-by-id.php",
         data: { 'clientid': id },
         dataType: "json",
-        success: function (response) {
+        success: function(response) {
             console.log(response)
             $("#ufullname").val(response[0].clientname);
             $("#ufirmname").val(response[0].firmname);
@@ -241,16 +257,16 @@ $('body').on('click', '.btn-update', function () {
             $("#usubdate").val(response[0].submission_date)
             var utotal = parseInt($("#utotamount").val())
 
-            $("#utotamount").keyup(function () {
+            $("#utotamount").keyup(function() {
 
                 utotal = parseInt($("#utotamount").val());
                 iudepamount = parseInt($("#udepamount").val());
                 newRemaining = utotal - iudepamount;
                 console.log(newRemaining)
-               $("#uremamount").val(newRemaining)
+                $("#uremamount").val(newRemaining)
             })
 
-            $("#udepamount").keyup(function () {
+            $("#udepamount").keyup(function() {
                 console.log(utotal);
                 var udepamount = parseInt($(this).val());
                 var uremaining = utotal - udepamount;
@@ -264,7 +280,7 @@ $('body').on('click', '.btn-update', function () {
 
 })
 
-$(".updateBtn").click(function(){
+$(".updateBtn").click(function() {
     id = $(this).attr('data-id');
     var ufullname = $("#ufullname").val();
     var ufirmname = $("#ufirmname").val();
@@ -274,7 +290,6 @@ $(".updateBtn").click(function(){
     var utaskdesc = $("#utaskdesc").val();
     var uassigned_userid = $("#uassigned_user").val();
     var uassigned_user = $("#uassigned_user option:selected").html();
-    // var assigned_userid = localStorage.getItem('userid')
     var utotal_amount = $("#utotamount").val();
     var udeposited_amount = $("#udepamount").val()
     var uremaining_amount = $("#uremamount").val();
@@ -284,9 +299,9 @@ $(".updateBtn").click(function(){
     $.ajax({
         type: "POST",
         url: "./api/update-client.php",
-        data: { 'id': id, 'uclientname': ufullname, 'ufirmname': ufirmname, 'ucontact': ucontact, 'uemail': uemail, 'uaddress': uaddress, 'utask': utaskdesc, 'uupdated_status':updated_status,'uassigned_userid': uassigned_userid, 'uassigned_username': uassigned_user, 'utotal_amount': utotal_amount, 'udeposited_amount': udeposited_amount, 'uremaining_amount': uremaining_amount, 'usubmission_date': ulast_date },
+        data: { 'id': id, 'uclientname': ufullname, 'ufirmname': ufirmname, 'ucontact': ucontact, 'uemail': uemail, 'uaddress': uaddress, 'utask': utaskdesc, 'uupdated_status': updated_status, 'uassigned_userid': uassigned_userid, 'uassigned_username': uassigned_user, 'utotal_amount': utotal_amount, 'udeposited_amount': udeposited_amount, 'uremaining_amount': uremaining_amount, 'usubmission_date': ulast_date },
         dataType: "json",
-        success: function (response) {
+        success: function(response) {
             if (response.status === 1) {
                 // alert('Client Successfully Updated')
                 $.notify({
@@ -308,9 +323,9 @@ $(".updateBtn").click(function(){
                 $("#updateClientModal").modal('hide');
             }
         },
-        error: function(err){
+        error: function(err) {
             alert('Error Occured, Please Try After Sometime.')
-            // console.log(err)
+
         }
     });
 

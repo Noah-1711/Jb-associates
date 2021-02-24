@@ -65,7 +65,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="email" class="control-label mb-1">Email ID:</label>
-                                                        <input id="email" name="email" type="text" class="form-control">   
+                                                        <input id="email" name="email" type="email" class="form-control">   
                                                         <span id="emailError"></span>                                                      
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="card-body">
                                     <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
+                                    <table class="table table-borderless table-data3" id="tbluser">
                                         <thead>
                                             <tr><th>#</th>
                                                 <th>Name</th>

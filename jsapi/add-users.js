@@ -1,7 +1,11 @@
 $(document).ready(function() {
     getUsers()
     $(".submitBtn").click(function() {
-
+        $('#fullnameError').html('');
+        $('#contactError').html('');
+        $('#emailError').html('');
+        $('#addressEror').html('');
+        $('#passwordError').html('');
         //alert('hello')
 
         var fullname = $("#fullname").val();
@@ -20,23 +24,7 @@ $(document).ready(function() {
             $('#contactError').html('please enter contact number');
         }
 
-
-        if (email == "") {
-            flag = false;
-            $('#emailError').html('please enter email');
-        }
-
-
-        if (address == "") {
-            flag = false;
-            $('#addressEror').html('please enter address');
-        }
-        if (password == "") {
-            flag = false;
-            $('#passwordError').html('please enter password');
-        }
         if (flag == true) {
-
             $.ajax({
                 type: "POST",
                 url: "./api/add-user.php",
@@ -91,20 +79,6 @@ $(document).ready(function() {
     })
 
 
-    // $(document).ready(function () {
-    //     // http://cloud.smsindiahub.in/vendorsms/pushsms.aspx?user=abc&password=xyz&msisdn=919898xxxxxx&sid=SenderId&msg=test%20message&fl=0&gwid=2
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "http://cloud.smsindiahub.in/vendorsms/pushsms.aspx",
-    //         crossDomain: true,
-    //         data: {'user':'Aditya Bhalerao', 'password':'aditya1646', 'mssidn':'9422461646', 'msg':'hi aditya','fl':0, 'gwid':2},
-    //         dataType: "json",
-    //         success: function (response) {
-    //             console.log(response)
-    //         }
-    //     });
-
-    // });
 
 })
 
@@ -113,7 +87,6 @@ function getUsers() {
     $.ajax({
         type: "GET",
         url: "./api/get-users.php",
-        // data: "data",
         dataType: "json",
         success: function(response) {
             count = 1;
@@ -130,9 +103,6 @@ function getUsers() {
                 html += '<td>';
                 html += '' + response[i].contact + '';
                 html += '</td>'
-                    // html+='<td>';
-                    // html+=''+response[i].password+'';
-                    // html+='</td>'
                 html += '<td>';
                 html += '' + response[i].role + '';
                 html += '</td>'
@@ -161,6 +131,9 @@ function getUsers() {
             }
 
             $("#users-table").html(html)
+            $('#tbluser').dataTable({
+                "ordering": false
+            });
 
         }
     });
@@ -168,7 +141,6 @@ function getUsers() {
 
 $('body').on('click', '.btn-act', function() {
     const id = $(this).attr('data-id');
-    // const retrive = $(this).attr('data-retrive');
     $.ajax({
         url: './api/delete-retrive-user.php',
         method: 'POST',
@@ -200,16 +172,16 @@ $('body').on('click', '.btn-ina', function() {
 })
 
 
-$("body").on('click', '.btn-edit', function(){
- 
+$("body").on('click', '.btn-edit', function() {
+
     const id = $(this).attr('data-id');
-    
+
     $.ajax({
         type: "GET",
         url: "./api/get-user-by-id.php",
-        data: {'userid': id},
+        data: { 'userid': id },
         dataType: "json",
-        success: function (response) {
+        success: function(response) {
             console.log(response)
 
             $("#ufullname").val(response[0].username)
@@ -217,15 +189,15 @@ $("body").on('click', '.btn-edit', function(){
             $("#uemail").val(response[0].email)
             $("#upassword").val(response[0].password)
             $("#uaddress").val(response[0].address)
-            $('.updateBtn').attr('data-id', response[0].id)        
+            $('.updateBtn').attr('data-id', response[0].id)
             $("#updateUserModal").modal('show');
         }
     });
-      
+
 
 })
 
-$(".updateBtn").click(function(){
+$(".updateBtn").click(function() {
 
     var id = $(this).attr('data-id')
 
@@ -234,33 +206,15 @@ $(".updateBtn").click(function(){
     var uemail = $("#uemail").val()
     var upassword = $("#upassword").val()
     var uaddress = $("#uaddress").val()
-
-    // console.log(ufullname, ucontact, uemail, upassword, uaddress)
-
     $.ajax({
         type: "POST",
         url: "./api/update-users.php",
-        data: {'id':id, 'ufullname':ufullname, 'ucontact':ucontact, 'uemail': uemail, 'upassword':upassword, 'uaddress':uaddress},
+        data: { 'id': id, 'ufullname': ufullname, 'ucontact': ucontact, 'uemail': uemail, 'upassword': upassword, 'uaddress': uaddress },
         dataType: "json",
-        success: function (response) {
+        success: function(response) {
             alert('User Updated')
             getUsers();
             $("#updateUserModal").modal('hide');
         }
     });
 })
-
-// {
-// 	"senderId": "SMSINI",
-// 	"message": "8275325686:hello",
-// 	"message_language_type": "english",
-// 	"which_route": "p",
-// 	"contacts": "1",
-// 	"is_schedule": "y",
-// 	"schedule_type": "one_time",
-// 	"schedule_time": "1613499420"
-// }"schedule_type": "one_time",
-// 	"schedule_time": "1613499420"
-// }"schedule_type": "one_time",
-// 	"schedule_time": "1613499420"
-// }

@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-md-12">
                         
-                        <div class="card mt-2">
+                            <div class="card mt-2">
                                     <div class="card-header">Add Client</div>
                                     <div class="card-body">
                                        
@@ -124,19 +124,16 @@
                                                 </div>
                                               
                                             </div>
-                                            <div class="row">
-                                            <div class="col-4"> 
-                                              <button class="btn btn-lg btn-info btn-block submitBtn">
-                                                  Add Client
-                                                </button>
-                                            </div>
+                                           
+                                           
 
                                              
-                                            </div>
+                                            
                                   
                                     </div>
                                 </div>
-                            </div>
+                          </div>
+                      </div>
                     </div>
                       <div class="row">
                           <div class="col-md-12">
@@ -148,7 +145,7 @@
                                     </div>
                                     <div class="card-body">
                                     <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
+                                    <table class="table table-borderless table-data3" id="tblclient">
                                         <thead>
                                             <tr><th>#</th>
                                                 <th>Client Name</th>

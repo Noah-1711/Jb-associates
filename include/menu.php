@@ -3,8 +3,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.php">
-                        J B Associates
+                        <a class="logo" href="index.html">
+                           JB-Associate
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -35,9 +35,15 @@
                                 <i class="fas fa-user"></i>Manage Clients</a>
                         </li> 
                         <li>
+                              <a href="add-services.php">
+                                <i class="fas fa-user"></i>Manage Services</a>
+                        </li> 
+                        
+                        <li>
                             <a href="enquiry.php">
                                 <i class="far fa-check-square"></i>Enquiry</a>
                         </li>
+                        
                     
                        
                     </ul>
@@ -49,10 +55,9 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo logo-desktop">
-                <a href="index.php">
-                    <!-- <img src="images/samrat-logo.png" width="180px" style="height:70px !important" alt="Samrat Karate Admin" /> -->
-                J B Associates
-                 </a>
+                <a href="#">
+                    <img src="images/logo.jpg" width="180px" style="height:70px !important" alt="JB Admin" />
+                </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -75,12 +80,17 @@
                               <a href="add-clients.php">
                                 <i class="fas fa-user"></i>Manage Clients</a>
                         </li>
+                        <li>
+                              <a href="add-services.php">
+                                <i class="fas fa-user"></i>Manage Services</a>
+                        </li> 
                     
                       
                         <li>
                             <a href="enquiry.php">
                                 <i class="far fa-check-square"></i>Enquiries</a>
                         </li>
+                       
                     
                     </ul>
                 </nav>
