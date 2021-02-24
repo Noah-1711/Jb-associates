@@ -30,14 +30,10 @@
   VALUES ('".$clientname."','".$address."','".$firmname."','".$contact."','".$email."', '".$task."','".$assigned_userid."','".$assigned_username."','pending','".$total_amount."','".$deposited_amount."','".$remaining_amount."','".$submission_date."','".$date."')"); 
  //echo $insert?'ok':'err';
 
-
      $response['status'] = 1; 
      $response['message'] = 'Form Submitted Successfully!'; 
 
-
  }
-
-
  else 
  {
      $response['status'] = 0; 

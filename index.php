@@ -29,7 +29,7 @@
                     <div class="container-fluid">
                       <div class="row">
                           <div class="col-md-12">
-                              <h2>Hi Admin!</h2>
+                              <h2>Hi <?php echo $login_username?> !</h2> 
                           </div>
                       </div>
                       <!-- Footer starts -->

@@ -1,14 +1,12 @@
 $(document).ready(function() {
-    getUsers()
+    getAgents()
     $(".submitBtn").click(function() {
 
         //alert('hello')
 
         var fullname = $("#fullname").val();
         var contact = $("#contact").val();
-        var email = $("#email").val();
-        var address = $("#address").val();
-        var password = $("#password").val();
+      
         var flag = true;
 
         if (!fullname) {
@@ -20,33 +18,18 @@ $(document).ready(function() {
             $('#contactError').html('please enter contact number');
         }
 
-
-        if (email == "") {
-            flag = false;
-            $('#emailError').html('please enter email');
-        }
-
-
-        if (address == "") {
-            flag = false;
-            $('#addressEror').html('please enter address');
-        }
-        if (password == "") {
-            flag = false;
-            $('#passwordError').html('please enter password');
-        }
         if (flag == true) {
 
             $.ajax({
                 type: "POST",
-                url: "./api/add-user.php",
-                data: { 'name': fullname, 'contact': contact, 'email': email, 'address': address, 'password': password },
+                url: "./api/add-agents.php",
+                data: { 'name': fullname, 'contact': contact },
                 dataType: "json",
                 success: function(response) {
                     if (response.status === 1) {
                         $.notify({
                             // options
-                            message: 'New user created' 
+                            message: 'Agent Successfully Added' 
                         },{
                             // settings
                             type: 'success',
@@ -59,25 +42,9 @@ $(document).ready(function() {
                                 align: "center"
                             },
                         });
-                        getUsers()
 
-                    }
-                    if(response.status === 3){
-                        $.notify({
-                            // options
-                            message: 'User already exists!' 
-                        },{
-                            // settings
-                            type: 'danger',
-                            animate: {
-                                enter: 'animated fadeInDown',
-                                exit: 'animated fadeOutUp'
-                            },
-                            placement: {
-                                from: "top",
-                                align: "center"
-                            },
-                        });
+                        getAgents()
+
                     }
                 }
 
@@ -108,11 +75,11 @@ $(document).ready(function() {
 
 })
 
-function getUsers() {
+function getAgents() {
 
     $.ajax({
         type: "GET",
-        url: "./api/get-users.php",
+        url: "./api/get-agents.php",
         // data: "data",
         dataType: "json",
         success: function(response) {
@@ -125,42 +92,31 @@ function getUsers() {
                 html += '' + count + '';
                 html += '</td>';
                 html += '<td>';
-                html += '' + response[i].username + '';
+                html += '' + response[i].agentname + '';
                 html += '</td>';
                 html += '<td>';
                 html += '' + response[i].contact + '';
                 html += '</td>'
-                    // html+='<td>';
-                    // html+=''+response[i].password+'';
-                    // html+='</td>'
-                html += '<td>';
-                html += '' + response[i].role + '';
-                html += '</td>'
-                html += '<td>';
-                html += '' + response[i].email + '';
-                html += '</td>'
-                html += '<td>';
-                html += '' + response[i].address + '';
-                html += '</td>'
+            
                 html += '<td>';
                 html += '' + response[i].status + '';
                 html += '</td>';
                 if (response[i].status == 'inactive') {
                     html += '<td>';
                     html += '<button class="btn btn-sm btn-act btn-success" data-id=' + response[i].id + ' title="Make User Active"><i class="fa fa-refresh"></i><button>';
-                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>'
+                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit Agent"><i class="fa fa-edit"></i><button>'
                     html += '</td>';
                 } else {
                     html += '<td>';
                     html += '<button class="btn btn-sm btn-ina btn-danger" data-id=' + response[i].id + ' title="Make User Active"><i class="fa fa-trash"></i><button>';
-                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit User"><i class="fa fa-edit"></i><button>'
+                    html += '<button class="btn btn-sm btn-edit btn-warning" data-id=' + response[i].id + ' title="Edit Agent"><i class="fa fa-edit"></i><button>'
                     html += '</td>';
                 }
                 count++;
 
             }
 
-            $("#users-table").html(html)
+            $("#agents-table").html(html)
 
         }
     });
@@ -170,12 +126,12 @@ $('body').on('click', '.btn-act', function() {
     const id = $(this).attr('data-id');
     // const retrive = $(this).attr('data-retrive');
     $.ajax({
-        url: './api/delete-retrive-user.php',
+        url: './api/delete-retrive-agent.php',
         method: 'POST',
         data: { 'id': id, 'retrive': 'retrive' },
         success: function(data) {
             if (data.status === 1) {
-                getUsers()
+                getAgents()
             }
         }
 
@@ -185,12 +141,12 @@ $('body').on('click', '.btn-act', function() {
 $('body').on('click', '.btn-ina', function() {
     const id = $(this).attr('data-id');
     $.ajax({
-        url: './api/delete-retrive-user.php',
+        url: './api/delete-retrive-agent.php',
         method: 'POST',
         data: { 'id': id },
         success: function(data) {
             if (data.status === 1) {
-                getUsers()
+                getAgents()
 
             }
         }
@@ -206,19 +162,19 @@ $("body").on('click', '.btn-edit', function(){
     
     $.ajax({
         type: "GET",
-        url: "./api/get-user-by-id.php",
-        data: {'userid': id},
+        url: "./api/get-agents-by-id.php",
+        data: {'agentId': id},
         dataType: "json",
         success: function (response) {
+
             console.log(response)
 
-            $("#ufullname").val(response[0].username)
+            $("#ufullname").val(response[0].agentname)
             $("#ucontact").val(response[0].contact)
-            $("#uemail").val(response[0].email)
-            $("#upassword").val(response[0].password)
-            $("#uaddress").val(response[0].address)
+            // $("#uemail").val(response[0].email)          
             $('.updateBtn').attr('data-id', response[0].id)        
-            $("#updateUserModal").modal('show');
+            $("#updateAgentModal").modal('show');
+
         }
     });
       
@@ -231,21 +187,36 @@ $(".updateBtn").click(function(){
 
     var ufullname = $("#ufullname").val()
     var ucontact = $("#ucontact").val()
-    var uemail = $("#uemail").val()
-    var upassword = $("#upassword").val()
-    var uaddress = $("#uaddress").val()
+
 
     // console.log(ufullname, ucontact, uemail, upassword, uaddress)
 
     $.ajax({
         type: "POST",
-        url: "./api/update-users.php",
-        data: {'id':id, 'ufullname':ufullname, 'ucontact':ucontact, 'uemail': uemail, 'upassword':upassword, 'uaddress':uaddress},
+        url: "./api/update-agents.php",
+        data: {'id':id, 'ufullname':ufullname, 'ucontact':ucontact},
         dataType: "json",
         success: function (response) {
-            alert('User Updated')
-            getUsers();
-            $("#updateUserModal").modal('hide');
+            if(response.status === 1){
+                $.notify({
+                    // options
+                    message: 'Agent Successfully Updated' 
+                },{
+                    // settings
+                    type: 'success',
+                    animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                    },
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                });
+                getUsers();
+                $("#updateAgentModal").modal('hide');
+            }
+     
         }
     });
 })

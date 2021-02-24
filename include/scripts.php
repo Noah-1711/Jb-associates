@@ -7,16 +7,16 @@
     <!-- Vendor JS       -->
     
     <script src="vendor/animsition/animsition.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        var role = localStorage.getItem('role');
-        console.log(role)
-        if(role=='user'){
-            $(".manage_user").remove()
-        }
-    });
-</script>
+    <script src="js/bootstrap-notify.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var role = localStorage.getItem('role');
+            console.log(role)
+            if(role=='user'){
+                $(".manage_user").remove()
+            }
+        });
+    </script>
     <!-- Main JS-->
     
     <script src="js/main.js"></script>

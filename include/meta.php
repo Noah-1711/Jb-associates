@@ -16,3 +16,11 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+
+    <style>
+        .logo-desktop{
+            font-size:24px;
+            text-align:center;
+        }
+     
+    </style>

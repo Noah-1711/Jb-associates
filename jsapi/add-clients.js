@@ -19,7 +19,7 @@ $(document).ready(function() {
         var deposited_amount = $("#depamount").val()
         var remaining_amount = $("#remamount").val();
         var last_date = $("#subdate").val();
-        var flag = false
+        var flag = true
             // console.log('auid', assigned_userid)
         if (!fullname) {
             flag = false;
@@ -233,7 +233,7 @@ $('body').on('click', '.btn-update', function () {
             $("#uemail").val(response[0].email);
             $("#uaddress").val(response[0].address);
             $("#utaskdesc").val(response[0].task);
-            $("#uassigned_user").val(response[0].id)
+            $("#uassigned_user").val(response[0].assigned_userid)
             $("#current_status").val(response[0].status)
             $("#utotamount").val(response[0].total_amount);
             $("#udepamount").val(response[0].deposited_amount);
@@ -288,7 +288,22 @@ $(".updateBtn").click(function(){
         dataType: "json",
         success: function (response) {
             if (response.status === 1) {
-                alert('Client Successfully Updated')
+                // alert('Client Successfully Updated')
+                $.notify({
+                    // options
+                    message: 'Client Successfully Updated' 
+                },{
+                    // settings
+                    type: 'success',
+                    animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                    },
+                    placement: {
+                        from: "top",
+                        align: "center"
+                    },
+                });
                 getClients()
                 $("#updateClientModal").modal('hide');
             }

@@ -3,8 +3,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                           Samrat Karate
+                        <a class="logo" href="index.php">
+                        J B Associates
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -18,9 +18,13 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                        
+                        </li>
+                        <li class='manage_user'>
+                              <a href="add-agents.php">
+                                <i class="fas fa-user"></i>Manage Agents</a>
                         </li>
                         <li class='manage_user'>
                             <a href="add-users.php">
@@ -44,23 +48,29 @@
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img src="images/samrat-logo.png" width="180px" style="height:70px !important" alt="Samrat Karate Admin" />
-                </a>
+            <div class="logo logo-desktop">
+                <a href="index.php">
+                    <!-- <img src="images/samrat-logo.png" width="180px" style="height:70px !important" alt="Samrat Karate Admin" /> -->
+                J B Associates
+                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class=" has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>                           
+                        </li>
+                        <li class='manage_user'>
+                              <a href="add-agents.php">
+                                <i class="fas fa-user"></i>Manage Agents</a>
                         </li>
                         <li class='manage_user'>
                               <a href="add-users.php">
                                 <i class="fas fa-user"></i>Manage Users</a>
                         </li>
+                      
                         <li>
                               <a href="add-clients.php">
                                 <i class="fas fa-user"></i>Manage Clients</a>
