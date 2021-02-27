@@ -38,6 +38,10 @@
                               <a href="add-services.php">
                                 <i class="fas fa-user"></i>Manage Services</a>
                         </li> 
+                        <li>
+                              <a href="reports.php">
+                                <i class="fas fa-user"></i>Reports</a>
+                        </li> 
                         
                         <li>
                             <a href="enquiry.php">
@@ -83,6 +87,10 @@
                         <li>
                               <a href="add-services.php">
                                 <i class="fas fa-user"></i>Manage Services</a>
+                        </li> 
+                        <li>
+                              <a href="reports.php">
+                                <i class="fas fa-user"></i>Reports</a>
                         </li> 
                     
                       

@@ -19,6 +19,7 @@
  $remaining_amount = $_POST['remaining_amount'];
  $submission_date = $_POST['submission_date'];
  $date = date('Y-m-d H:i:s');
+
    
 
  
@@ -34,7 +35,7 @@
      $response['message'] = 'Form Submitted Successfully!'; 
 
  }
- else 
+ else  
  {
      $response['status'] = 0; 
      $response['message'] = 'Error'; 
