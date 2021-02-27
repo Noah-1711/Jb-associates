@@ -12,9 +12,17 @@ switch($request_method)
 {
 	case 'GET':
 			// Retrive Products	Category
-            getUsers();
+		
+            // getUsers();
+		
  
 	break;
+
+	case 'POST':
+	 
+		userFilter();
+
+		break;
 
 	default:
 			// Invalid Request Method
@@ -23,35 +31,60 @@ switch($request_method)
 }
  
 
-function getUsers()
-{
-	global $connection;
-	$query;
+// function getUsers()
+// {
+// 	global $connection;
+// 	$query;
 	 
-		$query="SELECT * FROM tbl_client";		 
+// 		$query="SELECT * FROM tbl_client";		 
  
-	$response=array();
-	if($result=mysqli_query($connection, $query));
-	{
-		if(mysqli_num_rows($result) > 0){
+// 	$response=array();
+// 	if($result=mysqli_query($connection, $query));
+// 	{
+// 		if(mysqli_num_rows($result) > 0){
 
-			while($row=mysqli_fetch_assoc($result))
-			{
-				$response[]=$row;
-			}
-			// echo $response;
-			header('Content-Type: application/json');
+// 			while($row=mysqli_fetch_assoc($result))
+// 			{
+// 				$response[]=$row;
+// 			}
+// 			// echo $response;
+// 			header('Content-Type: application/json');
 
-			echo json_encode($response);
+// 			echo json_encode($response);
 
+// 		}
+// 		else{
+			
+// 		}
+// 	}
+
+// }
+
+function  userFilter(){
+	global $connection;
+
+	$query;
+
+	$query="SELECT * FROM tbl_client WHERE submission_date BETWEEN  '".$_POST["from"]."' AND '".$_POST["to"]."'";	
+
+	
+	$result=mysqli_query($connection, $query);
+
+	if(mysqli_num_rows($result) > 0){
+
+		while( $row = mysqli_fetch_assoc($result))
+		{
+			$response[]=$row;
 		}
-		else{
+		// echo $response;
+		header('Content-Type: application/json');
 
-		}
+		echo json_encode($response);
+
+	
 	}
 
 }
-
 
 @mysqli_close($conn);
 
