@@ -6,6 +6,12 @@
  {
  
  // echo "<img src='$path' />";
+ $agentname = $_POST['agentname'];
+ $agent_id = $_POST['agent_id'];
+ $servicename = $_POST['servicename'];
+ $service_id = $_POST['service_id'];
+ $isWhatsapp = $_POST['isWhatsapp'];
+ $isPrint = $_POST['isPrint'];
  $clientname = $_POST['clientname']; 
  $address= $_POST['address']; 
  $firmname = $_POST['firmname'];
@@ -26,8 +32,8 @@
  include_once '../include/connection.php';
   
  //insert form data in the database
- $insert = $connection->query("INSERT INTO tbl_client (clientname, address, firmname, contact, email,task, assigned_userid, assigned_username, status, total_amount, deposited_amount, remaining_amount, submission_date, registered_date)
-  VALUES ('".$clientname."','".$address."','".$firmname."','".$contact."','".$email."', '".$task."','".$assigned_userid."','".$assigned_username."','pending','".$total_amount."','".$deposited_amount."','".$remaining_amount."','".$submission_date."','".$date."')"); 
+ $insert = $connection->query("INSERT INTO tbl_client (agentname, agent_id, servicename, service_id, isWhatsapp, isPrint, clientname, address, firmname, contact, email,task, assigned_userid, assigned_username, status, total_amount, deposited_amount, remaining_amount, submission_date, registered_date)
+  VALUES ('".$agentname."','".$agent_id."','".$servicename."','".$service_id."','".$isWhatsapp."','".$isPrint."','".$clientname."','".$address."','".$firmname."','".$contact."','".$email."', '".$task."','".$assigned_userid."','".$assigned_username."','pending','".$total_amount."','".$deposited_amount."','".$remaining_amount."','".$submission_date."','".$date."')"); 
  //echo $insert?'ok':'err';
 
      $response['status'] = 1; 
