@@ -1,12 +1,13 @@
  
 $(document).ready(function() {
-   
-    
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     console.log($("#isWhatsapp").val())
     $('.datepicker').datepicker({
         autoclose: true,
         format: 'dd/mm/yyyy'
     })
+    $('.datepicker').datepicker('setDate', today);
     getClients()
     getAgents()
     getServices()
@@ -25,7 +26,7 @@ $(document).ready(function() {
         var agent_id = $("#agentname").val();
         var servicename = $("#servicename option:selected").html();
         var service_id = $("#servicename").val();
-
+        var paymentmode = $("#paymentmode").val();
         var fullname = $("#fullname").val();
         var firmname = $("#firmname").val();
         var contact = $("#contact").val();
@@ -89,7 +90,7 @@ $(document).ready(function() {
             $.ajax({
                 type: "POST",
                 url: "./api/add-client.php",
-                data: { 'agentname':agentname, 'agent_id': agent_id, 'servicename':servicename, 'service_id':service_id, 'isWhatsapp':0, 'isPrint':0, 'clientname': fullname, 'firmname': firmname, 'contact': contact, 'email': email, 'address': address, 'task': taskdesc, 'assigned_userid': assigned_userid, 'assigned_username': assigned_user, 'total_amount': total_amount, 'deposited_amount': deposited_amount, 'remaining_amount': remaining_amount, 'submission_date': last_date },
+                data: { 'agentname':agentname, 'agent_id': agent_id, 'servicename':servicename, 'service_id':service_id, 'isWhatsapp':0, 'isPrint':0, 'paymentmode':paymentmode, 'clientname': fullname, 'firmname': firmname, 'contact': contact, 'email': email, 'address': address, 'task': taskdesc, 'assigned_userid': assigned_userid, 'assigned_username': assigned_user, 'total_amount': total_amount, 'deposited_amount': deposited_amount, 'remaining_amount': remaining_amount, 'submission_date': last_date },
                 dataType: "json",
                 success: function(response) {
                     if (response.status === 1) {
@@ -209,7 +210,14 @@ function getAgents(){
 }
 
 function getClients() {
-
+    // var columns = {
+        
+    //         'agentname':'Agent Name',
+        
+    //         'servicename':'Form Name'
+        
+    //     }
+      
     $.ajax({
         type: "GET",
         url: "./api/get-clients.php",
@@ -217,7 +225,16 @@ function getClients() {
         success: function(response) {
             count = 1;
             var html = '';
+
             for (i = 0; i < response.length; i++) {
+               
+            //     var start= $("#hiddenip").datepicker("getDate");
+            //     var end = new Date(response[i].submission_date)
+            //     console.log(start);    	 
+   		    //    days = (end- start) / (1000 * 60 * 60 * 24);
+            //    datediff=Math.round(days);
+                //   alert(Math.round(days));
+             //  if(datediff<=2) { //mention notify status here
                 if(response[i].status == 'completed'){
                     html += '<tr class="completed-row">';
                 }
@@ -227,6 +244,8 @@ function getClients() {
                 if(response[i].status == 'Rejected'){
                     html += '<tr class="rejected-row">';
                 }
+             //  }
+             
               //  html += '<tr>';
                 html += '<td>';
                 html += '' + count + '';
@@ -262,6 +281,9 @@ function getClients() {
                 html += '' + response[i].isPrint + '';
                 html += '</td>';
                 html += '<td>';
+                html += '' + response[i].paymentmode + '';
+                html += '</td>';
+                html += '<td>';
                 html += '' + response[i].assigned_username + '';
                 html += '</td>';
                 html += '<td>';
@@ -290,9 +312,35 @@ function getClients() {
             }
 
             $("#clients-table").html(html)
-            $('#tblclient').dataTable({
-                "ordering": false
+            $.notify({
+                // options
+                message: 'Client Successfully Retrived' 
+            },{
+                // settings
+                type: 'success',
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                placement: {
+                    from: "top",
+                    align: "center"
+                },
             });
+            // var table = $('#table-sortable').tableSortable({
+            //     data: response,
+            //     sorting:false,
+            //     columns: columns,
+            //     rowsPerPage: 5,
+            //     pagination: true,
+            //     searchField:'#searchField',
+            // });
+            // table.setData(response,null,true);
+
+           $('#tblclient').dataTable({
+                // "destroy": true,     
+               "ordering": false
+           });
 
 
         }
@@ -321,7 +369,7 @@ $('body').on('click', '.btn-update', function() {
             $("#sent_by_whatsapp").val(response[0].isWhatsapp);
             $("#print_taken").val(response[0].isPrint);
             
-            
+            $("#upaymentmode").val(response[0].paymentmode)
             $("#ufullname").val(response[0].clientname);
             $("#ufirmname").val(response[0].firmname);
             $("#ucontact").val(response[0].contact);
@@ -376,6 +424,7 @@ $(".updateBtn").click(function() {
     var uemail = $("#uemail").val();
     var uaddress = $("#uaddress").val();
     var utaskdesc = $("#utaskdesc").val();
+    var upaymentmode = $("#upaymentmode").val();
     var uassigned_userid = $("#uassigned_user").val();
     var uassigned_user = $("#uassigned_user option:selected").html();
     var utotal_amount = $("#utotamount").val();
@@ -389,7 +438,7 @@ $(".updateBtn").click(function() {
     $.ajax({
         type: "POST",
         url: "./api/update-client.php",
-        data: { 'id': id, 'uagentname':uagentname, 'uagent_id': uagent_id, 'uservicename':uservicename, 'uservice_id':uservice_id, 'uisWhatsapp':sent_by_whatsapp,'uisPrint':print_taken,'uclientname': ufullname, 'ufirmname': ufirmname, 'ucontact': ucontact, 'uemail': uemail, 'uaddress': uaddress, 'utask': utaskdesc,'uupdated_status': updated_status, 'uassigned_userid': uassigned_userid, 'uassigned_username': uassigned_user, 'utotal_amount': utotal_amount, 'udeposited_amount': udeposited_amount, 'uremaining_amount': uremaining_amount, 'usubmission_date': ulast_date },
+        data: { 'id': id, 'uagentname':uagentname, 'uagent_id': uagent_id, 'uservicename':uservicename, 'uservice_id':uservice_id, 'uisWhatsapp':sent_by_whatsapp,'uisPrint':print_taken, 'upaymentmode':upaymentmode, 'uclientname': ufullname, 'ufirmname': ufirmname, 'ucontact': ucontact, 'uemail': uemail, 'uaddress': uaddress, 'utask': utaskdesc,'uupdated_status': updated_status, 'uassigned_userid': uassigned_userid, 'uassigned_username': uassigned_user, 'utotal_amount': utotal_amount, 'udeposited_amount': udeposited_amount, 'uremaining_amount': uremaining_amount, 'usubmission_date': ulast_date },
         dataType: "json",
         success: function(response) {
             if (response.status === 1) {

@@ -11,6 +11,7 @@
  $servicename = $_POST['servicename'];
  $service_id = $_POST['service_id'];
  $isWhatsapp = $_POST['isWhatsapp'];
+ $payment_mode = $_POST['paymentmode'];
  $isPrint = $_POST['isPrint'];
  $clientname = $_POST['clientname']; 
  $address= $_POST['address']; 
@@ -24,6 +25,9 @@
  $deposited_amount=$_POST['deposited_amount'];
  $remaining_amount = $_POST['remaining_amount'];
  $submission_date = $_POST['submission_date'];
+//  $beforeConvDate = DateTime::createFromFormat('d/m/Y', $submission_date_ini);
+//  $submission_date = $beforeConvDate->format("Y-m-d H:i:s");
+
  $date = date('Y-m-d H:i:s');
 
    
@@ -33,8 +37,8 @@
  include_once '../include/connection.php';
   
  //insert form data in the database
- $insert = $connection->query("INSERT INTO tbl_client (agentname, agent_id, servicename, service_id, isWhatsapp, isPrint, clientname, address, firmname, contact, email,task, assigned_userid, assigned_username, status, total_amount, deposited_amount, remaining_amount, submission_date, registered_date)
-  VALUES ('".$agentname."','".$agent_id."','".$servicename."','".$service_id."','".$isWhatsapp."','".$isPrint."','".$clientname."','".$address."','".$firmname."','".$contact."','".$email."', '".$task."','".$assigned_userid."','".$assigned_username."','pending','".$total_amount."','".$deposited_amount."','".$remaining_amount."','".$submission_date."','".$date."')"); 
+ $insert = $connection->query("INSERT INTO tbl_client (agentname, agent_id, servicename, service_id, isWhatsapp, isPrint, paymentmode, clientname, address, firmname, contact, email,task, assigned_userid, assigned_username, status, total_amount, deposited_amount, remaining_amount, submission_date, registered_date)
+  VALUES ('".$agentname."','".$agent_id."','".$servicename."','".$service_id."','".$isWhatsapp."','".$isPrint."','".$payment_mode."','".$clientname."','".$address."','".$firmname."','".$contact."','".$email."', '".$task."','".$assigned_userid."','".$assigned_username."','pending','".$total_amount."','".$deposited_amount."','".$remaining_amount."','".$submission_date."','".$date."')"); 
  //echo $insert?'ok':'err';
 
      $response['status'] = 1; 

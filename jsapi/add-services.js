@@ -77,9 +77,10 @@ function getServices() {
                 count++;
 
             }
-           
+            $('#tblservice').DataTable().destroy();
             $("#services-table").html(html)
-            $('#tblservice').dataTable({
+            $('#tblservice').DataTable({
+                "destroy": true,         
                 "ordering": false
             });
             
@@ -89,6 +90,7 @@ function getServices() {
 }
 
 $('body').on('click', '.btn-act', function() {
+    // $('#tblservice').DataTable().destroy();
     const id = $(this).attr('data-id');
     $.ajax({
         url: './api/delete-retrive-service.php',
@@ -97,7 +99,7 @@ $('body').on('click', '.btn-act', function() {
         success: function(data) {
             if (data.status === 1) {
               
-            
+              
                 getServices()
             }
         }
@@ -106,6 +108,8 @@ $('body').on('click', '.btn-act', function() {
 
 })
 $('body').on('click', '.btn-ina', function() {
+    // $('#tblservice').DataTable().destroy();
+
     const id = $(this).attr('data-id');
     $.ajax({
         url: './api/delete-retrive-service.php',

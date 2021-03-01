@@ -13,6 +13,7 @@
  $service_id = $_POST['uservice_id'];
  $isWhatsapp = $_POST['uisWhatsapp'];
  $isPrint = $_POST['uisPrint'];
+ $payment_mode = $_POST['upaymentmode'];
  $clientname = $_POST['uclientname']; 
  $address= $_POST['uaddress']; 
  $firmname = $_POST['ufirmname'];
@@ -32,7 +33,7 @@
  include_once '../include/connection.php';
   
  //insert form data in the database
- $update = "update tbl_client set agentname='".$agentname."',agent_id='".$agent_id."',servicename='".$servicename."',service_id='".$service_id."',isWhatsapp='".$isWhatsapp."',isPrint='".$isPrint."',clientname='".$clientname."', address='".$address."', firmname='".$firmname."', contact='".$contact."', email='".$email."',task='".$task."', assigned_userid='".$assigned_userid."', assigned_username='".$assigned_username."', status='".$updated_status."', total_amount='".$total_amount."', deposited_amount='".$deposited_amount."', remaining_amount='".$remaining_amount."', submission_date='".$submission_date."' where id='".$id."'";
+ $update = "update tbl_client set agentname='".$agentname."',agent_id='".$agent_id."',servicename='".$servicename."',service_id='".$service_id."',isWhatsapp='".$isWhatsapp."',isPrint='".$isPrint."',paymentmode='".$payment_mode."',clientname='".$clientname."', address='".$address."', firmname='".$firmname."', contact='".$contact."', email='".$email."',task='".$task."', assigned_userid='".$assigned_userid."', assigned_username='".$assigned_username."', status='".$updated_status."', total_amount='".$total_amount."', deposited_amount='".$deposited_amount."', remaining_amount='".$remaining_amount."', submission_date='".$submission_date."' where id='".$id."'";
 //  $insert = $connection->query();
  if(mysqli_query($connection, $update)){
     // echo "Records were updated successfully.";    

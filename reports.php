@@ -14,9 +14,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  
+    <link href='./css/bootstrap-datepicker.standalone.min.css' rel='stylesheet'/>
 
     <!-- Title Page-->
-    <title>Manage Services- JB Associates</title>
+    <title>Manage Reports- JB Associates</title>
 <?php include('./include/meta.php') ?>
 
 </head>
@@ -62,7 +63,7 @@
                                                         <span id="todateError"></span>                                                        
                                                     </div>
                                                 </div>
-                                                </div>
+                                                
                                                 <div class="col-6">
                                                 <div class="form-group">
                                                 <label for="filterstatus" class="control-label mb-1">Filter:</label>

@@ -213,7 +213,7 @@ $(".updateBtn").click(function(){
                         align: "center"
                     },
                 });
-                getUsers();
+                getAgents();
                 $("#updateAgentModal").modal('hide');
             }
      

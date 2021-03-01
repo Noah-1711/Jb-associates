@@ -149,7 +149,12 @@
                                                         <span id="remainingError"></span>                                                        
                                                     </div>
                                                 </div>
-
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="paymentmode" class="control-label mb-1">Payment Mode:</label>
+                                                        <input id="paymentmode" name="paymentmode" type="text" class="form-control">                                                        
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
                                                         <label for="subdate" class="control-label mb-1">Last date to submit :</label>
@@ -188,7 +193,9 @@
                                         </strong>
                                     </div>
                                     <div class="card-body">
-                                    <div class="table-responsive m-b-40">
+                                    <!-- <input type="text" placeholder="Search in table..." id="searchField"> -->
+                                    <div class="table-responsive m-b-40 table-sortable" id="table-sortable">
+
                                     <table class="table table-borderless table-data3" id="tblclient">
                                         <thead>
                                             <tr><th>#</th>
@@ -202,6 +209,7 @@
                                                 <th>Task</th>
                                                 <th> Sent by Whatsapp </th>
                                                 <th>Print taken</th>
+                                                <th>Payment mode</th>
                                                 <th>Assigned To</th>
                                                 <th>Status</th>
                                                 <th>Total amount</th>
@@ -315,6 +323,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                 <div class="form-group">
                                                         <label for="print_taken" class="control-label mb-1">Print:</label>
@@ -322,6 +331,12 @@
                                                         <option value="1">Taken</option>
                                                         <option value="0">Not Taken</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="upaymentmode" class="control-label mb-1">Payment Mode:</label>
+                                                        <input id="upaymentmode" name="upaymentmode" type="text" class="form-control">                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -365,7 +380,9 @@
                                                 <div class="col-md-6">
                                                 <div class="form-group">
                                                         <label for="usubdate" class="control-label mb-1">Last date to submit :</label>
-                                                        <input id="usubdate" name="usubdate" type="text" class="form-control datepicker">                                                      
+                                                        <input id="usubdate" name="usubdate" type="text" class="form-control datepicker">   
+                                                        <input id="hiddenip" name="hiddenip" type="hidden" class="form-control datepicker">                                                      
+
                                                 </div>
                                                 </div>
                                               

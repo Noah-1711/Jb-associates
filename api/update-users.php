@@ -9,8 +9,9 @@
  $id = $_POST['id'];
  $username = $_POST['ufullname']; 
  $password = $_POST['upassword'];
-
-    
+ $contact = $_POST['ucontact'];
+$address = $_POST['uaddress'];
+$email = $_POST['uemail'];
  //include database configuration file
  include_once '../include/connection.php';
   

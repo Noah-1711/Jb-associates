@@ -132,6 +132,7 @@ function getUsers() {
 
             $("#users-table").html(html)
             $('#tbluser').dataTable({
+                // "destroy": true,     
                 "ordering": false
             });
 

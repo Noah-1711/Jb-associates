@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('.datepicker').datepicker({
             autoclose: true,
             format: 'dd/mm/yyyy'
+            
         })
         // getClientReport();
 
@@ -15,10 +16,12 @@ function getClients() {
     $("#date-button").click(function() {
         $('#fromdateError').html('');
         $('#todateError').html('');
-        $('#filterstatus').html('')
+        $("#report-table").html('')
+
+        // $('#filterstatus').html('')
         var fromdate = $('#fromdate').val();
         var todate = $('#todate').val();
-        // var filter = $('#filterstatus').val();
+        var filter = $('#filterstatus').val();
 
 
         var flag = true
@@ -28,13 +31,8 @@ function getClients() {
 
             $.ajax({
                 type: "POST",
-                url: "./api/get-clients.php",
-                data: {
-                    'from': fromdate,
-                    'to': todate
-
-
-                },
+                url: "./api/client-reports.php",
+                data: {'from': fromdate,'to': todate, 'filter':filter},
                 dataType: "json",
 
                 success: function(response) {
@@ -91,7 +89,7 @@ function getClients() {
                     console.log(response)
                     $("#report-table").html(html)
 
-
+ 
                 },
                 error: function(err) {
                     console.log(err);
