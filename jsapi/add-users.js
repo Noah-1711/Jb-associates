@@ -6,7 +6,7 @@ $(document).ready(function() {
         $('#emailError').html('');
         $('#addressEror').html('');
         $('#passwordError').html('');
-        //alert('hello')
+
 
         var fullname = $("#fullname").val();
         var contact = $("#contact").val();
@@ -34,8 +34,8 @@ $(document).ready(function() {
                     if (response.status === 1) {
                         $.notify({
                             // options
-                            message: 'New user created' 
-                        },{
+                            message: 'New user created'
+                        }, {
                             // settings
                             type: 'success',
                             animate: {
@@ -50,11 +50,11 @@ $(document).ready(function() {
                         getUsers()
 
                     }
-                    if(response.status === 3){
+                    if (response.status === 3) {
                         $.notify({
                             // options
-                            message: 'User already exists!' 
-                        },{
+                            message: 'User already exists!'
+                        }, {
                             // settings
                             type: 'danger',
                             animate: {
@@ -148,6 +148,8 @@ $('body').on('click', '.btn-act', function() {
         data: { 'id': id, 'retrive': 'retrive' },
         success: function(data) {
             if (data.status === 1) {
+                $('#tbluser').DataTable().destroy();
+
                 getUsers()
             }
         }
@@ -163,6 +165,8 @@ $('body').on('click', '.btn-ina', function() {
         data: { 'id': id },
         success: function(data) {
             if (data.status === 1) {
+                $('#tbluser').DataTable().destroy();
+
                 getUsers()
 
             }
@@ -213,7 +217,8 @@ $(".updateBtn").click(function() {
         data: { 'id': id, 'ufullname': ufullname, 'ucontact': ucontact, 'uemail': uemail, 'upassword': upassword, 'uaddress': uaddress },
         dataType: "json",
         success: function(response) {
-            alert('User Updated')
+            // alert('User Updated')
+            $('#tbluser').DataTable().destroy();
             getUsers();
             $("#updateUserModal").modal('hide');
         }
