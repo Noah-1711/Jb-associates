@@ -458,6 +458,7 @@ $(".updateBtn").click(function() {
                         align: "center"
                     },
                 });
+                $('#tblclient').DataTable().destroy();
                 getClients()
                 $("#updateClientModal").modal('hide');
                 $("#updateClientModal").on('hidden.bs.modal', function(){
