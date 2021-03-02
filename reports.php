@@ -36,14 +36,14 @@
                     <div class="container-fluid">
                       <div class="row">
                           <div class="col-md-12">
-                              <h2>reports</h2>
+                              <h2>Client's Reports</h2>
                           </div>
                       </div>
                        <div class="row">
                           <div class="col-md-12">
                         
                              <div class="card mt-2">
-                                      <div class="card-header">submission</div>
+                                      <div class="card-header">Client's Reports</div>
                                          <div class="card-body">
                                        
                                       
@@ -107,7 +107,7 @@
                           <div class="col-md-12">
                           <div class="card mt-2">
                                     <div class="card-header">
-                                        <strong class="card-title">Users
+                                        <strong class="card-title">Report
                                             
                                         </strong>
                                     </div>
@@ -159,6 +159,47 @@
 
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="stats-modal" tabindex="-1" aria-labelledby="stats-modal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="stats-modalLabel">Datewise Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     <div class="row">
+        <div class="col-md-12">
+            <!-- <h3 class="mb-4">Client Status: <span id='doc-status' class="text-info"></span></h3>
+            <h4> <span id="amt_type" class="text-primary"></span> From <span id="fdate" class="text-primary"></span> To <span id="tdate" class="text-primary"></span> is <span id="amt" class="text-primary"></span> </h4> -->
+            <table class="table table-fluid" >
+            <tr>
+                <th>Client Status</th>
+                <th>Amount Nature</th>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+            <td id="doc-status"></td>
+            <td id="amt_type"></td>
+            <td id="fdate"></td>
+            <td id="tdate"></td>
+            <td id="amt"></td>
+            </tr>
+            </table>
+        </div>
+     </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 <?php include('./include/scripts.php') ?>
