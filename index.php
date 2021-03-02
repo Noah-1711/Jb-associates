@@ -77,7 +77,7 @@
                                             </div>
                                             <div class="text">
                                                 <h2 id="pending-amt"></h2>
-                                                <span>Payment Pending</span>
+                                                <span>Payment Rem.</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
