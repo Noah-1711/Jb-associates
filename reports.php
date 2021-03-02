@@ -75,6 +75,18 @@
                                                         </select>
                                                 </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="amount" class="control-label mb-1">Amount:</label>
+                                                        <select name="amount" id="amount" class='form-control' >
+                                                                <option value="0"> Select Amount </option>
+                                                                <option value="total_amount">Total Amount</option>
+                                                                <option value="deposited_amount">Deposited Amount</option>
+                                                                <option value="remaining_amount">Remaining Amount</option>
+                                                        </select>
+                                                        <span id="amountamt"></span>
+                                                </div>
+                                                </div>
                                                 
                                          </div>
                                          <div class="row">
