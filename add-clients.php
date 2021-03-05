@@ -392,6 +392,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary updateBtn">Update</button>
+        <button type="button" class="btn btn-primary sendBtn">Send Sms</button>
       </div>
     </div>
   </div>
