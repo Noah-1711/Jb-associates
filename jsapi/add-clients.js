@@ -189,18 +189,45 @@
              var html = '';
 
              for (i = 0; i < response.length; i++) {
+                var a = moment($("#hiddenip").datepicker("getDate"),'DD/MM/YYYY');
+                var b = moment(response[i].submission_date,'DD/MM/YYYY');
+                var diffDays = b.diff(a, 'days');
+                
+                
+                if(diffDays<=2 && response[i].status=='completed'){
+                    html += '<tr class=" blink">';
+                }
+                if(diffDays>2 && response[i].status=='completed'){
+                    html += '<tr class="completed-row">';
+                }
+                if(diffDays<=2 && response[i].status=='pending'){
+                    html += '<tr class="blink">';
+                }
+                if(diffDays>2 && response[i].status=='pending'){
+                    html += '<tr class="pending-row">';
+                }
+                if(diffDays<=2 && response[i].status=='Rejected'){
+                    html += '<tr class="blink">';
+                }
+                if(diffDays>2 && response[i].status=='Rejected'){
+                    html += '<tr class="Rejected-row">';
+                }
 
-
-                 if (response[i].status == 'completed') {
-                     html += '<tr class="completed-row">';
-                 }
-                 if (response[i].status == 'pending') {
-                     html += '<tr class="pending-row">';
-                 }
-                 if (response[i].status == 'Rejected') {
-                     html += '<tr class="rejected-row">';
-                 }
-
+                //  if (response[i].status == 'completed') {
+                //      html += '<tr class="completed-row di'+response[i].id+'" id="di'+response[i].id+'">';
+                //  }
+                //  if (response[i].status == 'pending') {
+                //      html += '<tr class="pending-row di'+response[i].id+'" id="di'+response[i].id+'">';
+                //  }
+                //  if (response[i].status == 'Rejected') {
+                //      html += '<tr class="rejected-row di'+response[i].id+'" id="di'+response[i].id+'">';
+                //  }
+                //  if(diffDays<=2){
+                //     //console.log( $("#di"+response[i].id+"")); 
+                //      $("#di"+response[i].id+"").attr('class','blink')
+                //      console.log($("#di"+response[i].id+"").length)
+                //       console.log('hi')
+                //   }
 
                  html += '<td>';
                  html += '' + count + '';
@@ -260,10 +287,11 @@
                  html += '' + response[i].registered_date + '';
                  html += '</td>';
                  html += '<td>';
-                 html += '<button class="btn btn-sm btn-update btn-warning" title="update task" data-id=' + response[i].id + '><i class="fa fa-edit"></i><button>';
+                 html += '<button class="btn btn-sm btn-update btn-info " title="update task" data-id=' + response[i].id + '><i class="fa fa-edit"></i><button>';
+                 html += '<button class="btn btn-sm btn-sms btn-warning" title="update task" data-id=' + response[i].id + '><i class="fa fa-envelope"></i><button>';
                  html += '</td>';
                  count++;
-
+               
              }
 
              $("#clients-table").html(html)

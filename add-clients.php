@@ -30,6 +30,20 @@
         background-color: #e74c3c !important; 
         color: #fff !important;
     }
+   
+@-webkit-keyframes blinker {
+  from {background-color: transparent }
+  to {background-color:#EA2027; color:#fff}
+}
+.blink td{
+    
+	text-decoration: blink;
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:ease-in-out;
+	-webkit-animation-direction: alternate;
+}
 </style>
 </head>
 
@@ -52,7 +66,7 @@
                       </div>
                     <div class="row">
                         <div class="col-md-12">
-                        
+                    
                             <div class="card mt-2">
                                     <div class="card-header">Add Client</div>
                                     <div class="card-body">
@@ -186,9 +200,11 @@
                     </div>
                       <div class="row">
                           <div class="col-md-12">
+                          <div style="height:50px; width:50px" class='blink'>
+                        </div>
                           <div class="card mt-2">
                                     <div class="card-header">
-                                        <strong class="card-title">Users
+                                        <strong class="card-title">Clients
                                            
                                         </strong>
                                     </div>
@@ -403,3 +419,4 @@
 <script src="jsapi/add-clients.js"></script>
 </html>
 <!-- end document-->
+<!-- http://219.90.67.240/vendorsms/pushsms.aspx?user=Aditya%20Bhalerao&password=aditya1646&msisdn=9422461646&sid=ABCXYZ&msg=Hello&fl=0&gwid=2 -->

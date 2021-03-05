@@ -21,4 +21,5 @@
     <script src="js/main.js"></script>
     <!--  -->
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="js/moment.js"></script>
     <!-- <script src="./js/table-sortable.js"></script> -->

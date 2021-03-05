@@ -31,6 +31,7 @@
                           <div class="col-md-12">
                               <h2>Hi <?php echo $login_username?> !</h2> 
                           </div>
+                          </div>
                           <div class="row m-t-25">
                             <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c1">
@@ -44,9 +45,9 @@
                                                 <span>Total Clients</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
+                                        <!-- <div class="overview-chart">
                                             <canvas id="widgetChart1"></canvas>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -62,9 +63,9 @@
                                                 <span>Payment Rec.</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
+                                        <!-- <div class="overview-chart">
                                             <canvas id="widgetChart2"></canvas>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -80,9 +81,9 @@
                                                 <span>Payment Rem.</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
+                                        <!-- <div class="overview-chart">
                                             <canvas id="widgetChart3"></canvas>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -98,9 +99,9 @@
                                                 <span>Total Earnings</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
+                                        <!-- <div class="overview-chart">
                                             <canvas id="widgetChart4"></canvas>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

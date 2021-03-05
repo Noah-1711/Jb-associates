@@ -26,6 +26,10 @@
                               <a href="add-agents.php">
                                 <i class="fas fa-user"></i>Manage Agents</a>
                         </li>
+                        <li>
+                              <a href="add-services.php">
+                                <i class="fas fa-user"></i>Manage Services</a>
+                        </li> 
                         <li class='manage_user'>
                             <a href="add-users.php">
                                 <i class="fas fa-user"></i>Manage Users</a>
@@ -34,10 +38,7 @@
                               <a href="add-clients.php">
                                 <i class="fas fa-user"></i>Manage Clients</a>
                         </li> 
-                        <li>
-                              <a href="add-services.php">
-                                <i class="fas fa-user"></i>Manage Services</a>
-                        </li> 
+                      
                         <li>
                               <a href="reports.php">
                                 <i class="fas fa-user"></i>Reports</a>
@@ -75,6 +76,10 @@
                               <a href="add-agents.php">
                                 <i class="fas fa-user"></i>Manage Agents</a>
                         </li>
+                        <li>
+                              <a href="add-services.php">
+                                <i class="fas fa-user"></i>Manage Services</a>
+                        </li> 
                         <li class='manage_user'>
                               <a href="add-users.php">
                                 <i class="fas fa-user"></i>Manage Users</a>
@@ -84,10 +89,7 @@
                               <a href="add-clients.php">
                                 <i class="fas fa-user"></i>Manage Clients</a>
                         </li>
-                        <li>
-                              <a href="add-services.php">
-                                <i class="fas fa-user"></i>Manage Services</a>
-                        </li> 
+                       
                         <li>
                               <a href="reports.php">
                                 <i class="fas fa-user"></i>Reports</a>
