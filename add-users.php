@@ -57,7 +57,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="contact" class="control-label mb-1">Mobile No.:</label>
+                                                        <label for="contact" class="control-label mb-1">Mobile No.: </label>
                                                         <input id="contact" name="contact" type="text" class="form-control">  
                                                         <span id="contactError"></span>                                                       
                                                     </div>
