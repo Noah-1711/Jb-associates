@@ -20,7 +20,21 @@ $(document).ready(function() {
                 dataType: "json",
                 success: function(response) {
                     if (response.status === 1) {
-                        alert('services are Successfully Added')
+                        $.notify({
+                            // options
+                            message: 'Service Successfully Added'
+                        }, {
+                            // settings
+                            type: 'success',
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            placement: {
+                                from: "top",
+                                align: "center"
+                            },
+                        });
                         getServices()
 
                     }
@@ -164,9 +178,25 @@ $(".updateBtn").click(function() {
         data: { 'id': id, 'uservicename': uservicename, 'udescription': udescription },
         dataType: "json",
         success: function(response) {
-            alert('service Updated')
+            $.notify({
+                // options
+                message: 'Service Successfully Updated'
+            }, {
+                // settings
+                type: 'success',
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                placement: {
+                    from: "top",
+                    align: "center"
+                },
+            });
+            $("#updateServiceModal").modal('hide');
+
             getServices();
-            $("#updateserviceModal").modal('hide');
+            
         }
     });
 })

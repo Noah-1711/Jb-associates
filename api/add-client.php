@@ -2,14 +2,18 @@
 <?php
  
     
- if(!empty($_POST['name']) || !empty($_POST['email']))
+ if(!empty($_POST['clientname']) || !empty($_POST['contact']))
  {
  
  // echo "<img src='$path' />";
  $agentname = $_POST['agentname'];
  $agent_id = $_POST['agent_id'];
  $servicename = $_POST['servicename'];
+ $servicearray = implode(",", $servicename);
+
  $service_id = $_POST['service_id'];
+ $serviceidarray = implode(",", $service_id);
+ $sms_status = 'not_sent';
  $isWhatsapp = $_POST['isWhatsapp'];
  $payment_mode = $_POST['paymentmode'];
  $isPrint = $_POST['isPrint'];
@@ -29,16 +33,13 @@
 //  $submission_date = $beforeConvDate->format("Y-m-d H:i:s");
 
  $date = date('Y-m-d H:i:s');
-
-   
-
  
  //include database configuration file
  include_once '../include/connection.php';
   
  //insert form data in the database
- $insert = $connection->query("INSERT INTO tbl_client (agentname, agent_id, servicename, service_id, isWhatsapp, isPrint, paymentmode, clientname, address, firmname, contact, email,task, assigned_userid, assigned_username, status, total_amount, deposited_amount, remaining_amount, submission_date, registered_date)
-  VALUES ('".$agentname."','".$agent_id."','".$servicename."','".$service_id."','".$isWhatsapp."','".$isPrint."','".$payment_mode."','".$clientname."','".$address."','".$firmname."','".$contact."','".$email."', '".$task."','".$assigned_userid."','".$assigned_username."','pending','".$total_amount."','".$deposited_amount."','".$remaining_amount."','".$submission_date."','".$date."')"); 
+ $insert = $connection->query("INSERT INTO tbl_client (agentname, agent_id, servicename, service_id, isWhatsapp, isPrint, paymentmode, clientname, address, firmname, contact, email,task, assigned_userid, assigned_username, status, sms_status, total_amount, deposited_amount, remaining_amount, submission_date, registered_date)
+  VALUES ('".$agentname."','".$agent_id."','".$servicearray."','".$serviceidarray."','".$isWhatsapp."','".$isPrint."','".$payment_mode."','".$clientname."','".$address."','".$firmname."','".$contact."','".$email."', '".$task."','".$assigned_userid."','".$assigned_username."','pending','not_sent','".$total_amount."','".$deposited_amount."','".$remaining_amount."','".$submission_date."','".$date."')"); 
  //echo $insert?'ok':'err';
 
      $response['status'] = 1; 

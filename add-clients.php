@@ -12,6 +12,7 @@
     <!-- Title Page-->
     <title>Manage Clients - JB Associates</title>
 <link href='./css/bootstrap-datepicker.standalone.min.css' rel='stylesheet'/>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <?php include('./include/meta.php') ?>
 <style>
@@ -36,13 +37,14 @@
   to {background-color:#EA2027; color:#fff}
 }
 .blink td{
-    
-	text-decoration: blink;
+    background-color:grey !important;
+    color:#fff !important;
+	/* text-decoration: blink;
 	-webkit-animation-name: blinker;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count:infinite;
 	-webkit-animation-timing-function:ease-in-out;
-	-webkit-animation-direction: alternate;
+	-webkit-animation-direction: alternate; */
 }
 </style>
 </head>
@@ -86,7 +88,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                             <label for="servicename" class="control-label mb-1">Select Service:</label>
-                                                        <select id="servicename" name="servicename" class="form-control">
+                                                        <select id="servicename" name="servicename[]" class="form-control" multiple="multiple">
                                                             
                                                         </select>                                                          
                                                             <span id="agentnameError"></span>                                                         
@@ -228,6 +230,7 @@
                                                 <th>Payment mode</th>
                                                 <th>Assigned To</th>
                                                 <th>Status</th>
+                                                <th>Notified by SMS</th>
                                                 <th>Total amount</th>
                                                 <th>Paid amount</th>
                                                 <th>Remaining amount</th>
@@ -287,7 +290,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                             <label for="servicename" class="control-label mb-1">Select Service:</label>
-                                                        <select id="uservicename" name="servicename" class="form-control servicename">
+                                                        <select id="uservicename" name="uservicename[]" multiple="multiple" class="form-control servicename">
                                                             
                                                         </select>                                                          
                                                             <span id="agentnameError"></span>                                                         
@@ -408,14 +411,107 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary updateBtn">Update</button>
-        <button type="button" class="btn btn-primary sendBtn">Send Sms</button>
+  
       </div>
     </div>
   </div>
 </div>
+<!-- / update modal end-->
+
+<!-- Sms Confirm Msg -->
+<div class="modal fade" id="smsconf" tabindex="-1" role="dialog" aria-labelledby="smsconf" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="smsconfLabel">Confirm Action</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Document Notification</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Payment Notification</a>
+  </li>
+   
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+   <div class="row mt-4">
+        <div class="col-md-12">
+        <p> Send document notification to <span id='receivers_name'></span> </p>
+    <hr>
+        <div class="card">
+        <div class="card-body">
+            <p>
+                <span class="text-info">Message Preview :</br> </span> Dear Client, Your Document submission is due on <span class="font-weight-bold" id='doi'></span>. Please Submit your <input type="text" class="form-control" id='docs'> <input type="hidden" id="recno"> immediately before the due date. Ignore if already submitted. -J.B Associates.
+            </p>
+        </div>
+        </div>
+        <button type="button" class="btn btn-primary float-right" id='sendsms' >Send</button>
+        </div>
+      </div>
+      </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <p class=""> Send payment notification to <span id='receivers_name_payment'></span> </p>
+            <hr>
+            <div class="card">
+            <div class="card-body">
+            <p> <strong> Services: </strong><span id='servdetails'> </span></p>
+            <p> <strong>Total:</strong> <span id='total_amount_notify'></span>. <br> <strong> Deposited:</strong> <span id='total_deposited_amount_prev'></span> <br>
+            <strong> Remaining:</strong> <span id='remaining_prev'></span> &nbsp;
+            </p>
+            <div class="row">
+                <div class="col-md-6">   <div class="form-group">
+                Enter Amount:
+                <input type="number" class='form-control' id="depositing_now">
+                <span class='amount-error text-danger'></span>
+
+            </div></div>
+                <div class="col-md-6">  
+                 <div class="form-group">
+                Payment Mode:
+                <input type="text" class='form-control' id="paymentmodeamt" value='NA'>
+                <span class='pm-error text-danger'></span>
+
+            </div></div>
+            </div>
+         
+            </div>
+           
+            </div>
+            <button type="button" class="btn btn-primary float-right" id='sendsmsamt' >Send</button>
+           
+        </div>
+    </div>
+
+  
+  </div>
+        </div>
+      </div>
+     
+   
+</div>
+     
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!-- / Sms confirm msg -->
 </body>
 <?php include('./include/scripts.php') ?>
 <script src='./js/bootstrap-datepicker.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="jsapi/add-clients.js"></script>
 </html>
 <!-- end document-->

@@ -79,6 +79,6 @@ header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 
 }
  
-@mysqli_close($conn);
+// @mysqli_close($conn);
 
 ?>

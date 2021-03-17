@@ -48,14 +48,14 @@
                                       
                                      
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="fullname" class="control-label mb-1">Agent Name:</label>
                                                         <input id="fullname" name="fullname" type="text" class="form-control">  
                                                         <span id="fullnameError"></span>                                                       
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="contact" class="control-label mb-1">Mobile No.:</label>
                                                         <input id="contact" name="contact" type="text" class="form-control">  
@@ -67,7 +67,7 @@
                                               
                                             </div>
                                             <div class="row">
-                                            <div class="col-4"> 
+                                            <div class="col-12 col-md-6"> 
                                               <button id="payment-button" class="btn btn-lg btn-info btn-block submitBtn">
                                                   Add Agent
                                                 </button>
@@ -134,13 +134,13 @@
       <div class="modal-body">
  
       <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="ufullname" class="control-label mb-1">Agent's Name:</label>
                 <input id="ufullname" name="ufullname" type="text" class="form-control">                                                         
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="ucontact" class="control-label mb-1">Mobile No.:</label>
                 <input id="ucontact" name="ucontact" type="text" class="form-control">                                                        

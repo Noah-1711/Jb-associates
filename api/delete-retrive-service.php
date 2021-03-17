@@ -73,6 +73,6 @@ function retrive_service(){
 
 }
 
-@mysqli_close($conn);
+// @mysqli_close($conn);
 
 ?>

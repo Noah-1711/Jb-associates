@@ -53,6 +53,6 @@ function getServiceById($id)
 }
 
 
-@mysqli_close($conn);
+// @mysqli_close($conn);
 
 ?>

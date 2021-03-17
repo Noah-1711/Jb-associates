@@ -48,14 +48,14 @@
                                       
                                      
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="fullname" class="control-label mb-1">Service Name:</label>
                                                         <input id="servicename" name="servicename" type="text" class="form-control">  
                                                         <span id="servicenameError"></span>                                                       
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="contact" class="control-label mb-1">Decription :</label>
                                                         <input id="description" name="descrip" type="text" class="form-control">  
@@ -65,9 +65,9 @@
                                                 
                                          </div>
                                          <div class="row">
-                                                <div class="col-4"> 
+                                                <div class="col-12 col-md-6"> 
                                               <button id="payment-button" class="btn btn-lg btn-info btn-block submitBtn">
-                                                 Submit
+                                                 Add Service
                                                 </button>
                                                 </div>
                                                </div>
@@ -132,13 +132,13 @@
       <div class="modal-body">
  
       <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="uservicename" class="control-label mb-1">services Name:</label>
                                                         <input id="uservicename" name="uservicename" type="text" class="form-control">                                                         
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="udescription" class="control-label mb-1">Description:</label>
                                                         <input id="udescription" name="udescription" type="text" class="form-control">                                                        

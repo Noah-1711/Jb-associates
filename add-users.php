@@ -48,35 +48,35 @@
                                       
                                      
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="fullname" class="control-label mb-1">Full Name:</label>
                                                         <input id="fullname" name="fullname" type="text" class="form-control">  
                                                         <span id="fullnameError"></span>                                                       
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="contact" class="control-label mb-1">Mobile No.: </label>
                                                         <input id="contact" name="contact" type="text" class="form-control">  
                                                         <span id="contactError"></span>                                                       
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="email" class="control-label mb-1">Email ID:</label>
                                                         <input id="email" name="email" type="email" class="form-control">   
                                                         <span id="emailError"></span>                                                      
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                 <div class="form-group">
                                                         <label for="address" class="control-label mb-1">Address:</label>
                                                         <input id="address" name="address" type="text" class="form-control"> 
                                                         <span id="addressEror"></span>                                                        
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                 <div class="form-group">
                                                         <label for="password" class="control-label mb-1">Password:</label>
                                                         <input id="password" name="password" type="password" class="form-control"> 
@@ -86,7 +86,7 @@
                                               
                                             </div>
                                             <div class="row">
-                                            <div class="col-4"> 
+                                            <div class="col-12 col-md-6"> 
                                               <button id="payment-button" class="btn btn-lg btn-info btn-block submitBtn">
                                                   Add User
                                                 </button>
@@ -157,31 +157,31 @@
       <div class="modal-body">
  
       <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="ufullname" class="control-label mb-1">Full Name:</label>
                                                         <input id="ufullname" name="ufullname" type="text" class="form-control">                                                         
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="ucontact" class="control-label mb-1">Mobile No.:</label>
                                                         <input id="ucontact" name="ucontact" type="text" class="form-control">                                                        
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="uemail" class="control-label mb-1">Email ID:</label>
                                                         <input id="uemail" name="uemail" type="text" class="form-control">                                                        
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                 <div class="form-group">
                                                         <label for="uaddress" class="control-label mb-1">Address:</label>
                                                         <input id="uaddress" name="uaddress" type="text" class="form-control">                                                        
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                 <div class="form-group">
                                                         <label for="upassword" class="control-label mb-1">Password:</label>
                                                         <input id="upassword" name="upassword" type="text" class="form-control">                                                        
